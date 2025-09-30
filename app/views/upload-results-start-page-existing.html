@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% from 'breadcrumb/macro.njk' import breadcrumb %}
+{% from 'button/macro.njk' import button %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block beforeContent %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+{{ backLink({
+  href: "index",
+  text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1>Upload results</h1>
+   <p class="nhsuk-body-l">Output your results quickly and securely</p>
+
+    <ol>
+      <Li>Prepare your file following the Disclosure Control Rules</li>
+      <li>Click on the 'Choose file' button below</li>
+      <li>Locate your results</li>
+      <li>Click on the 'continue' button below</li>  
+    </ol>
+   
+
+
+{% from 'details/macro.njk' import details %}
+
+{% call details({
+  summaryText: "View file guidance"
+}) %}
+  <p>An NHS number is a 10 digit number, like 485 777 3456.</p>
+  <p>You can find your NHS number by logging in to a GP online service or on any document the NHS has sent you, such as your:</p>
+  <ul>
+    <li>prescriptions</li>
+    <li>test results</li>
+    <li>hospital referral letters</li>
+    <li>appointment letters</li>
+  </ul>
+  <p>Ask your GP surgery for help if you can't find your NHS number.</p>
+{% endcall %}
+
+<h2>Upload your file</h2>
+
+<div class="nhsuk-u-padding-bottom-6">
+  <label>
+    Upload a file
+  </label><br>
+  <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+</div>
+
+
+      {{ button({
+        text: "continue",
+        href: "#"
+      }) }}
+
+      
+
+    </div>
+  </div>
+{% endblock %}

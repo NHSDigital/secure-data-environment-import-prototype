@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+{% from 'button/macro.njk' import button %}
+{% from 'summary-list/macro.njk' import summaryList %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">Check your request before submitting</h1>
+
+      <h2 class="nhsuk-heading-m">
+        Request details
+      </h2>
+
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "File"
+            },
+            value: {
+              text: "filenameexample.txt"
+            },
+            actions: {
+              items: [
+                {
+                  href: "upload-results-start-page",
+                  text: "Change",
+                  visuallyHiddenText: "file name"
+                }
+              ]
+            }
+          },
+          
+        
+          {
+            key: {
+              text: "Contextual information"
+            },
+            value: {
+              html: 'example contextual information about the file that the user has entered on the previous step'
+            },
+            actions: {
+              items: [
+                {
+                  href: "upload-results-additional-information",
+                  text: "Change",
+                  visuallyHiddenText: "contextual information"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+     
+
+      
+
+  {{ button({
+        text: "Confirm and submit",
+        href: "upload-results-confirmation-page"
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

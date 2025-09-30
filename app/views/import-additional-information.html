@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% from 'breadcrumb/macro.njk' import breadcrumb %}
+{% from 'button/macro.njk' import button %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block beforeContent %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+{{ backLink({
+  href: "import-start-page",
+  text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+{% from 'textarea/macro.njk' import textarea %}
+
+{{ textarea({
+  name: "example",
+  id: "example",
+  label: {
+    text: "Add contextual information",
+     classes: "nhsuk-label--l",
+          isPageHeading: true
+  },
+  hint: {
+    text: "This should explain what the data contains and how it will complement other data to help you with your research"
+  }
+}) }}
+
+{% from 'button/macro.njk' import button %}
+
+{{ button({
+        text: "Continue",
+        href: "import-summary"
+      }) }}
+
+</div>
+</div>
+{% endblock %}

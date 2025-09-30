@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% from 'breadcrumb/macro.njk' import breadcrumb %}
+{% from 'button/macro.njk' import button %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% from 'panel/macro.njk' import panel %}
+{% from "summary-list/macro.njk" import summaryList %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      {{ panel({
+        titleText: "Import reference data request created"
+      }) }}
+
+      <h2>Request details</h2>
+
+      {% set siteLocationHtml %}
+        St George's Pharmacy<br>
+        46 St George's Rd<br>
+        Elephant and Castle<br>
+        London<br>
+        SE1 6ET
+      {% endset %}
+
+      {{ summaryList({
+        classes: "nhsuk-summary-list--no-border",
+        rows: [
+          {
+            key: {
+              text: "File name"
+            },
+            value: {
+              text: "filenameexample.txt"
+            }
+          },
+          {
+            key: {
+              text: "contextual information"
+            },
+            value: {
+              text: "example contextual information about the file that the user has entered on the previous step"
+            }
+          }
+        ]
+      }) }}
+
+      <h2>What happens next</h2>
+      <p>You will receive a confirmation email once the file has been checked. This should take less than 24 hours</p>
+      <p>If your data fails to meet mandatory criteria, you will receive an email explaining why and how to correct it. </p>
+      <p>We aim to respond to all requests within 5 working days.</p>
+
+      {% from 'button/macro.njk' import button %}
+
+{{ button({
+  text: "Go to all results"
+}) }}
+      
+
+
+
+
+
+    </div>
+  </div>
+{% endblock %}

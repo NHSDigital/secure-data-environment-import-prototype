@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h1>Secure Data Environment (SDE) portal</h1>
+
+{% from 'card/macro.njk' import card %}
+
+<ul class="nhsuk-grid-row nhsuk-card-group">
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "#",
+      primary: "true",
+      clickable: "true",
+      heading: "Manage users",
+      headingClasses: "nhsuk-heading-m",
+      description: "View, manage and add user accounts"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "#",
+      primary: "true",
+      clickable: "true",
+      heading: "Launch the virtual desktop",
+      headingClasses: "nhsuk-heading-m",
+      description: "Access the data, tools and service in your agreement"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "question-page",
+      primary: "true",
+      clickable: "true",
+      heading: "Import reference data or code",
+      headingClasses: "nhsuk-heading-m",
+      description: "Bring reference data or code into the environment"
+    }) }}
+  </li>
+  <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+    {{ card({
+      href: "#",
+      primary: "true",
+      clickable: "true",
+      heading: "Get help and guidance (opens in a new window)",
+      headingClasses: "nhsuk-heading-m",
+      description: "Access guidance on setting up your account and getting started with the tools"
+    }) }}
+  </li>
+</ul>
+
+{% endblock %}

@@ -19,8 +19,8 @@
       <form action="/upload-type-answer" method="post" novalidate>
 
         {{ radios({
-          idPrefix: "whattypeofdata",
-          name: "whattypeofdata",
+         
+          name: "WhatTypeofData",
           fieldset: {
             legend: {
               text: "What type of data do you want to import?",
@@ -28,7 +28,7 @@
               classes: "nhsuk-fieldset__legend--l"
             }
           },
-          value: data.dataType,
+          
           items: [
             {
               value: "Reference data",

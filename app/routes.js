@@ -5,27 +5,28 @@ const router = express.Router()
 
 // Add your routes here - above the module.exports line
 
-// Run this code when a form is submitted to '/magical-powers-answer'
-router.post('/upload-type-answer', function (req, res) {
+// Called when answering question about whether NHS number is known
+router.post('/upload-type-answer', (req, res) => {
 
-  // Make a variable and give it the value from 'hasSymptoms'
-  const datatype = req.session.data.dataType
+  // Make a variable and give it the value from 'nhsNumberKnown'
+  const WhatTypeofData = req.session.data.WhatTypeofData
 
   // Check whether the variable matches a condition
-  if (datatype == "Reference data") {
+  if (WhatTypeofData === 'Reference data') {
 
-    // Send user to next page
-    res.redirect('import-start-page')
-  }
-  else if (datatypes == "Code || datatype == "Code") {
+    // Send user to a page where they’ll enter their NHS number
+    res.redirect('/import-start-page')
 
-    // Send user to ineligible page
+  } else if (WhatTypeofData === 'Code') {
+
+    // Send user to a page where they can find their NHS number
     res.redirect('/import-portal')
-  }
-  else {
 
-    // No answer, return to question
+  } else {
+
+    // Send user back to the question page
     res.redirect('/import-question-page')
+
   }
 })
 

@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% from 'action-link/macro.njk' import actionLink %}
+
+{% block content %}
+
+<h1>Location options<h1>
+
+<h2>Independent page</h2>
+<p>Hypothesis: By placing the checkbox on its own page then users will pay more attention to the message as they have to agree to it in order to progress onto the next page</P>
+{{ actionLink({
+  text: "Independent page",
+  href: "independent-page/upload-results-start-page"
+}) }}
+<br>
+{% from 'action-link/macro.njk' import actionLink %}
+
+<h2>Checkbox on check and confirm</h2>
+<p>Hypothesis:By placing the checkbox on the final stage as the final interaction users will associate this with similar t&c's patterns seen on other sites and services so will understand the importance of confirming they have understood and agreed to the message<p>
+{{ actionLink({
+  text: "Check and confirm page",
+  href: "confirmation-page/upload-results-start-page"
+}) }}
+
+{% endblock %}

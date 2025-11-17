@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% from 'breadcrumb/macro.njk' import breadcrumb %}
+{% from 'button/macro.njk' import button %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block beforeContent %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+{{ backLink({
+  href: "#",
+  text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1>Create a request to output results</h1>
+      
+   {% from 'inset-text/macro.njk' import insetText %}
+
+<h2>Before you start</h2>
+  <ul>
+    <li>Prepare your file following the Disclosure Control Rules</li>
+    <li>Your file should not exceed 50MB and should be one of the following acceptable file formats: PY, JSON, CSV, TXT, MD, TEX, PDF, SQL, XLS, XLSX, RST, R, RDATA, IPYNB, JPEG, JPG, SVG, PNG or GIF.</li>
+  </ul>
+
+
+
+
+   <h2>Choose a file to output</h2>   
+   <p>Choose the file containing the data set you would like to output. You will add additional information in the next step.</p>
+
+
+
+
+
+
+<div class="nhsuk-u-padding-bottom-6">
+  <label class="nhsuk-u-visually-hidden">
+    Upload a file
+  </label><br>
+  <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+</div>
+
+
+      {{ button({
+        text: "Continue",
+        href: "upload-results-additional-information"
+      }) }}
+
+      
+
+    </div>
+  </div>
+{% endblock %}

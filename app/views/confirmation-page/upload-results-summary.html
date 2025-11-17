@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+{% from 'button/macro.njk' import button %}
+{% from 'summary-list/macro.njk' import summaryList %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">Check your request before submitting</h1>
+
+      <h2 class="nhsuk-heading-m">
+        Request details
+      </h2>
+
+      {{ summaryList({
+        rows: [
+          {
+            key: {
+              text: "File"
+            },
+            value: {
+              text: "filenameexample.txt"
+            },
+            actions: {
+              items: [
+                {
+                  href: "upload-results-start-page",
+                  text: "Change",
+                  visuallyHiddenText: "file name"
+                }
+              ]
+            }
+          },
+          
+        
+          {
+            key: {
+              text: "Contextual information"
+            },
+            value: {
+              html: 'example contextual information about the file that the user has entered on the previous step'
+            },
+            actions: {
+              items: [
+                {
+                  href: "upload-results-additional-information",
+                  text: "Change",
+                  visuallyHiddenText: "contextual information"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+     
+<p>By signing DSA-0000-0000, the Data Controller committed to all data processing, including output requests, being in line with the purpose stated in section 5 of DSA-0000-0000.</p>
+
+   <div class="nhsuk-checkboxes" data-module="nhsuk-checkboxes">
+      <div class="nhsuk-checkboxes__item">
+        <input class="nhsuk-checkboxes__input" id="example" name="example" type="checkbox" value="email">
+        <label class="nhsuk-label nhsuk-checkboxes__label" for="example">
+          By ticking this box, I confirm that the scope and intended use of this output request is in accordance with the purpose described in DSA-0000-0000
+        </label>
+      </div>
+   </div>
+<br>
+<br>      
+
+  {{ button({
+        text: "Confirm and submit",
+        href: "upload-results-confirmation-page"
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% from 'breadcrumb/macro.njk' import breadcrumb %}
+{% from 'button/macro.njk' import button %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block beforeContent %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+{{ backLink({
+  href: "upload-results-start-page",
+  text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+{% from 'textarea/macro.njk' import textarea %}
+
+{{ textarea({
+  name: "example",
+  id: "example",
+  label: {
+    text: "Add contextual information",
+     classes: "nhsuk-label--l",
+          isPageHeading: true
+  }
+}) }}
+
+{% from 'button/macro.njk' import button %}
+
+{{ button({
+        text: "Continue",
+        href: "upload-results-agreement"
+      }) }}
+
+</div>
+</div>
+{% endblock %}

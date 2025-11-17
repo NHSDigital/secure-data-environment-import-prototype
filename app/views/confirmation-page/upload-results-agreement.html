@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% from 'breadcrumb/macro.njk' import breadcrumb %}
+{% from 'button/macro.njk' import button %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block beforeContent %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+{{ backLink({
+  href: "#",
+  text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1>Confirm purpose of the output request</h1>
+      
+   
+
+   <p>By signing DSA-0000-0000, the Data Controller committed to all data processing, including output requests, being in line with the purpose stated in section 5 of DSA-0000-0000.</p>
+
+   <div class="nhsuk-checkboxes" data-module="nhsuk-checkboxes">
+      <div class="nhsuk-checkboxes__item">
+        <input class="nhsuk-checkboxes__input" id="example" name="example" type="checkbox" value="email">
+        <label class="nhsuk-label nhsuk-checkboxes__label" for="example">
+          By ticking this box, I confirm that the scope and intended use of this output request is in accordance with the purpose described in DSA-0000-0000
+        </label>
+      </div>
+   </div>
+
+   {% from 'button/macro.njk' import button %}
+<br>
+{{ button({
+  text: "Continue",
+  href: "upload-results-summary"
+}) }}
+
+
+
+
+    </div>
+  </div>
+  </main>
+{% endblock %}

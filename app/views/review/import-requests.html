@@ -1,0 +1,702 @@
+{% extends 'layout.html' %}
+
+{% set pageName = "Import requests" %}
+{% set containerClass = "nhsuk-width-container-fluid" %}
+
+
+<!-- For adding a breadcrumb or back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs and https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block beforeContent %}
+{% endblock %}
+
+
+{% block content %}
+<main>
+<div class="fullscreen-table">
+
+ 
+ 
+    
+
+<h1>Import requests</h1>
+
+{% from 'details/macro.njk' import details %}
+
+{% call details({
+  summaryText: "Filter requests",
+  classes: "nhsuk-expander"
+}) %}
+<div class="nhsuk-grid-row">
+ <div class="nhsuk-grid-column-one-third">
+ {% from 'input/macro.njk' import input %}
+
+{{ input({
+  label: {
+    text: "Requested by"
+  },
+  hint: {
+    text: "Enter full or partial email address"
+  },
+  id: "RequestedBy",
+  name: "RequestedBy"
+}) }}
+</div>
+
+<div class="nhsuk-grid-column-one-third">
+{{ input({
+  label: {
+    text: "Agreement"
+  },
+  hint: {
+    text: "Enter full or partial DSA number"
+  },
+  id: "Agreement",
+  name: "Agreement"
+}) }}
+</div>
+
+<div class="nhsuk-grid-column-one-third">
+{{ input({
+  label: {
+    text: "Output checker"
+  },
+  hint: {
+    text: "Enter full or partial email address"
+  },
+  id: "OutputChecker",
+  name: "OutputChecker"
+}) }}
+ </div>
+</div>
+
+<div class="nhsuk-grid-row">
+ <div class="nhsuk-grid-column-one-third">
+ {% from 'select/macro.njk' import select %}
+
+{{ select({
+  id: "select-1",
+  name: "select-1",
+  label: {
+    text: "Priority"
+  },
+  items: [
+    {
+      value: 1,
+      text: "Normal"
+    },
+    {
+      value: 2,
+      text: "Fast track"
+    }
+  ]
+}) }}
+</div>
+
+<div class="nhsuk-grid-column-one-third">
+{% from 'date-input/macro.njk' import dateInput %}
+
+{{ dateInput({
+  id: "DateStart",
+  namePrefix: "DateStart",
+  fieldset: {
+    legend: {
+      text: "Date range start",
+      classes: "nhsuk-label"
+    }
+  },
+
+  items: [
+    {
+      name: "day",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "month",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "year",
+      classes: "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+</div>
+
+<div class="nhsuk-grid-column-one-third">
+{% from 'date-input/macro.njk' import dateInput %}
+
+{{ dateInput({
+  id: "DateStart",
+  namePrefix: "DateEnd",
+  fieldset: {
+    legend: {
+      text: "Date range end",
+      classes: "nhsuk-label"
+    }
+  },
+
+  items: [
+    {
+      name: "day",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "month",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "year",
+      classes: "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+</div>
+
+{% from 'button/macro.njk' import button %}
+
+{{ button({
+  text: "Apply filters"
+}) }}
+
+{% endcall %}
+
+    {% from 'tabs/macro.njk' import tabs %} 
+{% from 'tables/macro.njk' import table %}
+
+
+{% set AssignedToMe %}  
+  <div>
+    <h2 class="nhsuk-heading-s">Pending requests</h2>
+    <p>10 pending requests, ordered by 'priority' then 'request date' (oldest to newest)</p>
+  </div>
+
+  {{ table({
+    responsive: false,
+    panel: false,
+    caption: "",
+    firstCellIsHeader: false,
+    head: [
+      { text: "ID" },
+      { text: "File name", format: "text" },
+      { text: "Priority", format: "text" },
+      { text: "Request date", format: "text" },
+      { text: "Requested by", format: "text" },
+      { text: "Agreement", format: "text" },
+      { text: "Output checker", format: "text" },
+      { text: "Action", format: "text" }
+    ],
+    rows: [
+      [
+        { text: "1001" },
+        { html: '<a class="nhsuk-link" href="/requests/1001">patient-1001.json</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--yellow">Fast track</span>' },
+        { text: "2025-11-09 14:22" },
+        { text: "research.data@oxford.ac.uk" },
+        { text: "DSA-4829-1503" },
+        { text: "j.turner@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "1002" },
+        { html: '<a class="nhsuk-link" href="/requests/1002">export-wardB-1002.zip</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--yellow">Fast track</span>' },
+        { text: "2025-11-09 11:03" },
+        { text: "data.access@imperial.ac.uk" },
+        { text: "DSA-0391-7742" },
+        { text: "k.patel@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "1003" },
+        { html: '<a class="nhsuk-link" href="/requests/1003">clinic-report-1003.csv</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-08 16:45" },
+        { text: "info@ucl-research.ac.uk" },
+        { text: "DSA-6612-3008" },
+        { text: "m.oneill@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "1004" },
+        { html: '<a class="nhsuk-link" href="/requests/1004">batch-export-1004.tar.gz</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-09 09:12" },
+        { text: "research@kcl.ac.uk" },
+        { text: "DSA-2074-8906" },
+        { text: "l.brown@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "1005" },
+        { html: '<a class="nhsuk-link" href="/requests/1005">ward-summary-1005.xlsx</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-09 08:01" },
+        { text: "enquiries@edinburgh-research.ac.uk" },
+        { text: "DSA-5140-2239" },
+        { text: "s.ahmed@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "1006" },
+        { html: '<a class="nhsuk-link" href="/requests/1006">study-export-1006.json</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-09 07:45" },
+        { text: "studies@manchester.ac.uk" },
+        { text: "DSA-3307-4411" },
+        { text: "p.green@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ]
+    ]
+    
+  }) }}
+
+{% endset -%}
+
+
+{% set Unassigned %}  
+  <div>
+    <h2 class="nhsuk-heading-s">Unassigned pending requests</h2>
+    {% from 'button/macro.njk' import button %}
+    {{ button({ text: "Assign selected requests" }) }}
+    <p>10 pending requests, ordered by 'priority' then 'request date' (oldest to newest)</p>
+  </div>
+
+  {{ table({
+    responsive: false,
+    panel: false,
+    caption: "",
+    firstCellIsHeader: false,
+    head: [
+      { text: "ID" },
+      { text: "File name", format: "text" },
+      { text: "Priority", format: "text" },
+      { text: "Request date", format: "text" },
+      { text: "Requested by", format: "text" },
+      { text: "Agreement", format: "text" },
+      { text: "Output checker", format: "text" },
+      { text: "Action", format: "text" }
+    ],
+    rows: [
+      [
+        { text: "2001" },
+        { html: '<a class="nhsuk-link" href="/requests/2001">patient-2001.json</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--yellow">Fast track</span>' },
+        { text: "2025-11-08 10:12" },
+        { text: "research.team@ox.ac.uk" },
+        { text: "DSA-1234-5678" },
+        { text: "a.smith@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/2001/assign">Assign</a>' }
+      ],
+      [
+        { text: "2002" },
+        { html: '<a class="nhsuk-link" href="/requests/2002">export-wardX-2002.zip</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--yellow">Fast track</span>' },
+        { text: "2025-11-07 09:03" },
+        { text: "data.team@imperial.ac.uk" },
+        { text: "DSA-8765-4321" },
+        { text: "b.jones@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/2002/assign">Assign</a>' }
+      ],
+      [
+        { text: "2003" },
+        { html: '<a class="nhsuk-link" href="/requests/2003">clinic-report-2003.csv</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-06 15:20" },
+        { text: "info@ucl-research.ac.uk" },
+        { text: "DSA-2381-5599" },
+        { text: "c.clark@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/2003/assign">Assign</a>' }
+      ],
+      [
+        { text: "2004" },
+        { html: '<a class="nhsuk-link" href="/requests/2004">ward-summary-2004.xlsx</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-05 11:05" },
+        { text: "enquiries@edinburgh-research.ac.uk" },
+        { text: "DSA-4020-1102" },
+        { text: "d.evans@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/2004/assign">Assign</a>' }
+      ],
+      [
+        { text: "2005" },
+        { html: '<a class="nhsuk-link" href="/requests/2005">study-export-2005.json</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-04 09:30" },
+        { text: "studies@manchester.ac.uk" },
+        { text: "DSA-5501-3300" },
+        { text: "e.fisher@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/2005/assign">Assign</a>' }
+      ],
+      [
+        { text: "2006" },
+        { html: '<a class="nhsuk-link" href="/requests/2006">batch-export-2006.tar.gz</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-03 14:50" },
+        { text: "research@kcl.ac.uk" },
+        { text: "DSA-6677-8899" },
+        { text: "f.green@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/2006/assign">Assign</a>' }
+      ],
+      [
+        { text: "2007" },
+        { html: '<a class="nhsuk-link" href="/requests/2007">export-wardY-2007.zip</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-02 08:10" },
+        { text: "data.access@imperial.ac.uk" },
+        { text: "DSA-7733-2211" },
+        { text: "g.hall@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/2007/assign">Assign</a>' }
+      ],
+      [
+        { text: "2008" },
+        { html: '<a class="nhsuk-link" href="/requests/2008">clinic-report-2008.csv</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-01 16:40" },
+        { text: "research.data@oxford.ac.uk" },
+        { text: "DSA-8844-5566" },
+        { text: "h.lee@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/2008/assign">Assign</a>' }
+      ],
+      [
+        { text: "2009" },
+        { html: '<a class="nhsuk-link" href="/requests/2009">ward-summary-2009.xlsx</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-10-31 10:00" },
+        { text: "enquiries@edinburgh-research.ac.uk" },
+        { text: "DSA-9900-1122" },
+        { text: "i.morris@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/2009/assign">Assign</a>' }
+      ],
+      [
+        { text: "2010" },
+        { html: '<a class="nhsuk-link" href="/requests/2010">study-export-2010.json</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-10-30 13:15" },
+        { text: "studies@manchester.ac.uk" },
+        { text: "DSA-1012-3344" },
+        { text: "j.parker@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/2010/assign">Assign</a>' }
+      ]
+    ]
+  }) }}
+
+
+
+{% endset -%}
+
+{% set Assigned %}  
+  <div>
+    <h2 class="nhsuk-heading-s">Assigned pending requests</h2>
+    <p>10 pending requests, ordered by 'priority' then 'request date' (oldest to newest)</p>
+  </div>
+  {{ table({
+    responsive: false,
+    panel: false,
+    caption: "",
+    firstCellIsHeader: false,
+    head: [
+      { text: "ID" },
+      { text: "File name", format: "text" },
+      { text: "Priority", format: "text" },
+      { text: "Request date", format: "text" },
+      { text: "Requested by", format: "text" },
+      { text: "Agreement", format: "text" },
+      { text: "Output checker", format: "text" },
+      { text: "Action", format: "text" }
+    ],
+    rows: [
+      [
+        { text: "3001" },
+        { html: '<a class="nhsuk-link" href="/requests/3001">study-export-3001.json</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-10-15 12:00" },
+        { text: "research@manchester.ac.uk" },
+        { text: "DSA-2222-3333" },
+        { text: "c.wilson@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "3002" },
+        { html: '<a class="nhsuk-link" href="/requests/3002">clinic-report-3002.csv</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span' },
+        { text: "2025-10-20 15:30" },
+        { text: "info@ucl-research.ac.uk" },
+        { text: "DSA-4444-5555" },
+        { text: "d.brown@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "3003" },
+        { html: '<a class="nhsuk-link" href="/requests/3003">patient-3003.json</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-10-22 09:10" },
+        { text: "research.data@ox.ac.uk" },
+        { text: "DSA-5555-6666" },
+        { text: 'b.jones@nhs.net' },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign to me</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "3004" },
+        { html: '<a class="nhsuk-link" href="/requests/3004">export-wardA-3004.zip</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-10-25 13:45" },
+        { text: "data.team@imperial.ac.uk" },
+        { text: "DSA-6666-7777" },
+        { text: "f.jones@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "3005" },
+        { html: '<a class="nhsuk-link" href="/requests/3005">ward-summary-3005.xlsx</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-10-28 08:30" },
+        { text: "enquiries@edinburgh-research.ac.uk" },
+        { text: "DSA-7777-8888" },
+        { text: 's.webster@nhs.net' },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign to me</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "3006" },
+        { html: '<a class="nhsuk-link" href="/requests/3006">study-export-3006.json</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-10-29 11:20" },
+        { text: "studies@manchester.ac.uk" },
+        { text: "DSA-8888-9999" },
+        { text: "h.baker@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "3007" },
+        { html: '<a class="nhsuk-link" href="/requests/3007">batch-export-3007.tar.gz</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-10-30 16:05" },
+        { text: "research@kcl.ac.uk" },
+        { text: "DSA-1111-2222" },
+        { text: 'h.breslin@nhs.net' },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign to me</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "3008" },
+        { html: '<a class="nhsuk-link" href="/requests/3008">clinic-report-3008.csv</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-10-31 09:50" },
+        { text: "info@ucl-research.ac.uk" },
+        { text: "DSA-3333-4444" },
+        { text: 'a.brunt@nhs.net' },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign to me</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "3009" },
+        { html: '<a class="nhsuk-link" href="/requests/3009">export-wardB-3009.zip</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-01 14:40" },
+        { text: "data.access@imperial.ac.uk" },
+        { text: "DSA-5550-1212" },
+        { text: "k.ross@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "3010" },
+        { html: '<a class="nhsuk-link" href="/requests/3010">ward-summary-3010.xlsx</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-02 10:15" },
+        { text: "enquiries@edinburgh-research.ac.uk" },
+        { text: "DSA-7770-2020" },
+        { text: 'l.price@nhs.net' },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign to me</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ]
+    ]
+  }) }}
+{% endset -%}
+
+{% set allPending %}  
+  <div>
+    <h2 class="nhsuk-heading-s">All pending requests</h2>
+    <p>10 pending requests, ordered by 'priority' then 'request date' (oldest to newest)</p>
+  </div>
+  {{ table({
+    responsive: false,
+    panel: false,
+    caption: "",
+    firstCellIsHeader: false,
+    head: [
+      { text: "ID" },
+      { text: "File name", format: "text" },
+      { text: "Priority", format: "text" },
+      { text: "Request date", format: "text" },
+      { text: "Requested by", format: "text" },
+      { text: "Agreement", format: "text" },
+      { text: "Output checker", format: "text" },
+      { text: "Action", format: "text" }
+    ],
+    rows: [
+      [
+        { text: "4001" },
+        { html: '<a class="nhsuk-link" href="/requests/4001">batch-export-4001.tar.gz</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--yellow">Fast track</span>' },
+        { text: "2025-01-05 08:20" },
+        { text: "research@kcl.ac.uk" },
+        { text: "DSA-9999-0000" },
+        { html: '<span class="nhsuk-u-secondary-text-colour">Unassigned</span>' },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign</a>'}
+      ],
+      [
+        { text: "4002" },
+        { html: '<a class="nhsuk-link" href="/requests/4002">ward-summary-4002.xlsx</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--yellow">Fast track</span>' },
+        { text: "2025-02-11 10:45" },
+        { text: "enquiries@edinburgh-research.ac.uk" },
+        { text: "DSA-1010-2020" },
+        { html: '<span class="nhsuk-u-secondary-text-colour">Unassigned</span>' },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign</a>'}
+      ],
+      [
+        { text: "4003" },
+        { html: '<a class="nhsuk-link" href="/requests/4003">patient-4003.json</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--yellow">Fast track</span>' },
+        { text: "2025-03-12 09:30" },
+        { text: "research.data@oxford.ac.uk" },
+        { text: "DSA-2020-3030" },
+        { text: "g.brown@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "4004" },
+        { html: '<a class="nhsuk-link" href="/requests/4004">study-export-4004.json</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-04-01 11:10" },
+        { text: "studies@manchester.ac.uk" },
+        { text: "DSA-3030-4040" },
+        { text: "h.fox@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign to me</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "4005" },
+        { html: '<a class="nhsuk-link" href="/requests/4005">export-wardC-4005.zip</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-05-06 14:55" },
+        { text: "data.team@imperial.ac.uk" },
+        { text: "DSA-4040-5050" },
+        { html: '<span class="nhsuk-u-secondary-text-colour">Unassigned</span>' },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign</a>'}
+      ],
+      [
+        { text: "4006" },
+        { html: '<a class="nhsuk-link" href="/requests/4006">ward-summary-4006.xlsx</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-06-10 09:05" },
+        { text: "enquiries@edinburgh-research.ac.uk" },
+        { text: "DSA-5050-6060" },
+        { text: "j.white@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign to me</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "4007" },
+        { html: '<a class="nhsuk-link" href="/requests/4007">clinic-report-4007.csv</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-07-15 12:40" },
+        { text: "info@ucl-research.ac.uk" },
+        { text: "DSA-6060-7070" },
+        { html: '<span class="nhsuk-u-secondary-text-colour">Unassigned</span>' },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign</a>'}
+      ],
+      [
+        { text: "4008" },
+        { html: '<a class="nhsuk-link" href="/requests/4008">study-export-4008.json</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-08-20 16:25" },
+        { text: "research@kcl.ac.uk" },
+        { text: "DSA-7070-8080" },
+        { text: "l.brown@nhs.net" },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Make decision</a>
+                  <a class="nhsuk-link" href="/requests/1006/unassign">Unassign</a>'}
+      ],
+      [
+        { text: "4009" },
+        { html: '<a class="nhsuk-link" href="/requests/4009">batch-export-4009.tar.gz</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-09-10 10:00" },
+        { text: "research.team@ox.ac.uk" },
+        { text: "DSA-8080-9090" },
+        { html: '<span class="nhsuk-u-secondary-text-colour">Unassigned</span>' },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign</a>'}
+      ],
+      [
+        { text: "4010" },
+        { html: '<a class="nhsuk-link" href="/requests/4010">ward-summary-4010.xlsx</a>' },
+        { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-10-01 13:00" },
+        { text: "enquiries@edinburgh-research.ac.uk" },
+        { text: "DSA-9090-1010" },
+        { html: '<span class="nhsuk-u-secondary-text-colour">Unassigned</span>' },
+        { html: '<a class="nhsuk-link no-wrap" href="/requests/1006/assign">Assign</a>'}
+      ]
+    ]
+  }) }}
+{% endset -%}
+
+
+
+{{ tabs({ 
+  items: [ 
+    { 
+      label: "Assigned to me (6)", 
+      id: "past-day", 
+      panel: { 
+        html: AssignedToMe 
+      } 
+    }, 
+    { 
+      label: "Unassigned (52)", 
+      id: "past-week", 
+      panel: { 
+        html: Unassigned 
+      } 
+    }, 
+    { 
+      label: "Assigned (16)", 
+      id: "past-month", 
+      panel: { 
+        html: Assigned 
+      } 
+    },  
+    { 
+      label: "All pending (68)", 
+      id: "past-year", 
+      panel: { 
+        html: allPending 
+      } 
+    },
+    { 
+      label: "Actioned", 
+      id: "actioned", 
+      panel: { 
+        html: actioned 
+      } 
+    } 
+  ] 
+}) }}
+
+</div> 
+</main>
+ 
+{% endblock %}

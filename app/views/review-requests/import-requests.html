@@ -273,6 +273,7 @@
     caption: "",
     firstCellIsHeader: false,
     head: [
+      { html: '<input type="checkbox" id="selectAllUnassigned" class="app-checkbox-header" aria-label="Select all unassigned requests">' },
       { text: "ID" },
       { text: "File name", format: "text" },
       { text: "Priority", format: "text" },
@@ -284,6 +285,7 @@
     ],
     rows: [
       [
+        { html: '<input type="checkbox" name="unassignedRequest" value="2001" class="app-checkbox">' },
         { text: "2001" },
         { html: '<a class="nhsuk-link" href="/requests/2001">patient-2001.json</a>' },
         { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--yellow">Fast track</span>' },
@@ -294,6 +296,7 @@
         { html: '<a class="nhsuk-link no-wrap" href="/requests/2001/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedRequest" value="2002" class="app-checkbox">' },
         { text: "2002" },
         { html: '<a class="nhsuk-link" href="/requests/2002">export-wardX-2002.zip</a>' },
         { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--yellow">Fast track</span>' },
@@ -304,6 +307,7 @@
         { html: '<a class="nhsuk-link no-wrap" href="/requests/2002/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedRequest" value="2003" class="app-checkbox">' },
         { text: "2003" },
         { html: '<a class="nhsuk-link" href="/requests/2003">clinic-report-2003.csv</a>' },
         { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
@@ -314,6 +318,7 @@
         { html: '<a class="nhsuk-link no-wrap" href="/requests/2003/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedRequest" value="2004" class="app-checkbox">' },
         { text: "2004" },
         { html: '<a class="nhsuk-link" href="/requests/2004">ward-summary-2004.xlsx</a>' },
         { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
@@ -324,6 +329,7 @@
         { html: '<a class="nhsuk-link no-wrap" href="/requests/2004/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedRequest" value="2005" class="app-checkbox">' },
         { text: "2005" },
         { html: '<a class="nhsuk-link" href="/requests/2005">study-export-2005.json</a>' },
         { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
@@ -334,6 +340,7 @@
         { html: '<a class="nhsuk-link no-wrap" href="/requests/2005/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedRequest" value="2006" class="app-checkbox">' },
         { text: "2006" },
         { html: '<a class="nhsuk-link" href="/requests/2006">batch-export-2006.tar.gz</a>' },
         { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
@@ -344,6 +351,7 @@
         { html: '<a class="nhsuk-link no-wrap" href="/requests/2006/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedRequest" value="2007" class="app-checkbox">' },
         { text: "2007" },
         { html: '<a class="nhsuk-link" href="/requests/2007">export-wardY-2007.zip</a>' },
         { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
@@ -354,6 +362,7 @@
         { html: '<a class="nhsuk-link no-wrap" href="/requests/2007/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedRequest" value="2008" class="app-checkbox">' },
         { text: "2008" },
         { html: '<a class="nhsuk-link" href="/requests/2008">clinic-report-2008.csv</a>' },
         { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
@@ -364,6 +373,7 @@
         { html: '<a class="nhsuk-link no-wrap" href="/requests/2008/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedRequest" value="2009" class="app-checkbox">' },
         { text: "2009" },
         { html: '<a class="nhsuk-link" href="/requests/2009">ward-summary-2009.xlsx</a>' },
         { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
@@ -374,6 +384,7 @@
         { html: '<a class="nhsuk-link no-wrap" href="/requests/2009/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedRequest" value="2010" class="app-checkbox">' },
         { text: "2010" },
         { html: '<a class="nhsuk-link" href="/requests/2010">study-export-2010.json</a>' },
         { html: '<span class="nhsuk-tag no-wrap nhsuk-tag--blue">Normal</span>' },
@@ -697,6 +708,35 @@
 }) }}
 
 </div> 
+</main>
+ 
+{% block pageScripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const selectAllCheckbox = document.getElementById('selectAllUnassigned');
+    const individualCheckboxes = document.querySelectorAll('input[name="unassignedRequest"]');
+    
+    if (selectAllCheckbox) {
+      selectAllCheckbox.addEventListener('change', function() {
+        individualCheckboxes.forEach(checkbox => {
+          checkbox.checked = this.checked;
+        });
+      });
+      
+      // Update select all checkbox when individual checkboxes change
+      individualCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          const allChecked = Array.from(individualCheckboxes).every(cb => cb.checked);
+          const someChecked = Array.from(individualCheckboxes).some(cb => cb.checked);
+          selectAllCheckbox.checked = allChecked;
+          selectAllCheckbox.indeterminate = someChecked && !allChecked;
+        });
+      });
+    }
+  });
+</script>
+{% endblock %}
+
 </main>
  
 {% endblock %}

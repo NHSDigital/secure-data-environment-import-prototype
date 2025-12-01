@@ -15,12 +15,36 @@
 <!-- Edit the header -->
 <!-- Header code examples can be found at https://service-manual.nhs.uk/design-system/components/header -->
 {% block header %}
-  {{ header({
-    service: {
-      text: serviceName,
-      href: "/"
-    }
-  }) }}
+ {% from 'header/macro.njk' import header %}
+
+{{ header({
+  containerClasses: "nhsuk-width-container-fluid",
+  Search: false,
+  logo: {
+    href: "#",
+    ariaLabel: "NHS digital service manual homepage"
+  },
+  service: {
+    text: "Manage import and output requests",
+    href: "#"
+  },
+  
+  navigation: {
+    items: [
+    
+      {
+        classes: "app-header__navigation-item--with-count",
+        html: 'Output requests <span class="app-header__navigation-count">68</span>',
+        href: "output-requests"
+      },
+      {
+        classes: "app-header__navigation-item--with-count",
+        html: 'Import requests <span class="app-header__navigation-count">3</span>',
+        href: 'import-requests'
+      }
+    ]
+  }
+}) }}
 {% endblock %}
 
 <!-- Edit the footer -->

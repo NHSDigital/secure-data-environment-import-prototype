@@ -15,12 +15,12 @@ router.post('/upload-type-answer', (req, res) => {
   if (WhatTypeofData === 'Reference data') {
 
     // Send user to a page where they’ll enter their NHS number
-    res.redirect('/import-referencedata-start-page')
+    res.redirect('import/import-referencedata-start-page')
 
   } else if (WhatTypeofData === 'Code') {
 
     // Send user to a page where they can find their NHS number
-    res.redirect('/import-code-start-page')
+    res.redirect('import/import-code-start-page')
 
   } else {
 

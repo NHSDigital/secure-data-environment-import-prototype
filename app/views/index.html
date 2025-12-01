@@ -4,16 +4,27 @@
 
 {% block content %}
 
+<h2>Create requests</h2>
+<p>User journeys for requesting reference data/code imports and results ouputs</p>
+
 {{ actionLink({
-  text: "Upload results",
-  href: "output-options"
+  text: "Request data/code import ",
+  href: "import/import-portal"
 }) }}
+<br>
+{{ actionLink({
+  text: "Request reults output",
+  href: "output-results/upload-results-start-page"
+}) }}
+
 <br>
 {% from 'action-link/macro.njk' import actionLink %}
 
+<h2>Review requests</h2>
+<p>User journeys for reviewing import and output requests</p>
 {{ actionLink({
-  text: "Import reference data",
-  href: "import-portal"
+  text: "Review requests",
+  href: "review-requests/output-requests"
 }) }}
 
 {% endblock %}

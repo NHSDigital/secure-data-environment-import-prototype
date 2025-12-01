@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% from 'action-link/macro.njk' import actionLink %}
+
+{% block content %}
+<h1>Create requests flows</h1>
+{{ actionLink({
+  text: "Output results",
+  href: "output-options"
+}) }}
+<br>
+{% from 'action-link/macro.njk' import actionLink %}
+
+{{ actionLink({
+  text: "Import data",
+  href: "import-portal"
+}) }}
+
+{% endblock %}

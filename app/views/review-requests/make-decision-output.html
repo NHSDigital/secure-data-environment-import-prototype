@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% from 'breadcrumb/macro.njk' import breadcrumb %}
+{% from 'button/macro.njk' import button %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block beforeContent %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+{{ backLink({
+  href: "#",
+  text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-width-container">
+
+      <h1>Make a decision on request 90</h1>
+      
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "File name"
+      },
+      value: {
+        text: "txt"
+      
+      }
+    },
+    {
+      key: {
+        text: "Status"
+      },
+      value: {
+        text: "Pending"
+      }
+    },
+    {
+      key: {
+        text: "Contact information"
+      },
+      value: {
+        html: "73 Roman Rd<br>Leeds<br> LS2 5ZN"
+      }
+    },
+    {
+      key: {
+        text: "Contact details"
+      },
+      value: {
+        html: "<p>07700 900362</p><p>karen.francis@example.com</p>"
+      }
+    }
+  ]
+}) }}
+
+
+      {{ button({
+        text: "Continue",
+        href: "upload-results-additional-information"
+      }) }}
+
+      
+
+    </div>
+  </div>
+{% endblock %}

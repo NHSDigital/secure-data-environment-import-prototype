@@ -104,11 +104,23 @@
   ]
 }) }}
 
+{% set otherReasonInput %}
+  {% from "textarea/macro.njk" import textarea %}
+  {{ textarea({
+    id: "otherReason",
+    name: "otherReason",
+    label: {
+      text: "Provide further information"
+    },
+    rows: 5
+  }) }}
+{% endset %}
+
 {% from "radios/macro.njk" import radios %}
 
 {{ radios({
-  idPrefix: "example",
-  name: "Your decision",
+  idPrefix: "decision",
+  name: "decision",
   fieldset: {
     legend: {
       text: "Your decision",
@@ -128,10 +140,77 @@
   ]
 }) }}
 
-{{ button({
-  text: "Continue",
-  href: "upload-results-additional-information"
-}) }}
+<div id="rejectionReasonsContainer" style="display: none; margin-top: 24px;">
+  {% from "checkboxes/macro.njk" import checkboxes %}
+  {% from "textarea/macro.njk" import textarea %}
+{% from "textarea/macro.njk" import textarea %}
+
+{% set emailHtml %}
+  {{ textarea({
+    id: "email",
+    name: "email",
+    classes: "nhsuk-u-width-two-thirds",
+    label: {
+      text: "Enter further information about the rejection"
+    }
+  }) }}
+{% endset -%}
+
+  {{ checkboxes({
+    idPrefix: "rejectionReasons",
+    name: "rejectionReasons",
+    fieldset: {
+      legend: {
+        text: "Why are you rejecting this request?",
+        size: "m",
+        isPageHeading: false
+      }
+    },
+    items: [
+      {
+        value: "unrounded",
+        text: "Unrounded counts"
+      },
+      {
+        value: "noContext",
+        text: "Not enough context provided"
+      },
+      {
+        value: "countUnder10",
+        text: "Counts under 10"
+      },
+      {
+        value: "rowCount",
+        text: "Row count exceeded"
+      },
+      {
+        value: "fileType",
+        text: "File type not allowed"
+      },
+      {
+        value: "pii",
+        text: "Contained personally identifiable information"
+      },
+      {
+        value: "other",
+        text: "Other or add further information",
+        conditional: {
+          html: emailHtml
+        }
+      }
+    ]
+  }) }}
+</div>
+
+{% from "button/macro.njk" import button %}
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Submit decision"
+  }) }}
+
+  <a href="#" class="nhsuk-link">Cancel</a>
+</div>
 
       
 

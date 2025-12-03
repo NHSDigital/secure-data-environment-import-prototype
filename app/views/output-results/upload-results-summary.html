@@ -11,7 +11,7 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <h1 class="nhsuk-heading-l">Check your request before submitting</h1>
+      <h1 class="nhsuk-heading-l">Check your request before sending</h1>
 
       <h2 class="nhsuk-heading-m">
         Request details
@@ -40,7 +40,7 @@
         
           {
             key: {
-              text: "Contextual information"
+              text: "Additional information"
             },
             value: {
               html: 'example contextual information about the file that the user has entered on the previous step'
@@ -59,13 +59,13 @@
       }) }}
 
      
-<p>By signing DSA-0000-0000, the Data Controller committed to all data processing, including output requests, being in line with the purpose stated in section 5 of DSA-0000-0000.</p>
+<p>Output request data for one agreement must not be used for another agreement or purpose. <a href="#">Hyperlink to legal wording</a></p>
 
    <div class="nhsuk-checkboxes" data-module="nhsuk-checkboxes">
       <div class="nhsuk-checkboxes__item">
         <input class="nhsuk-checkboxes__input" id="example" name="example" type="checkbox" value="email">
         <label class="nhsuk-label nhsuk-checkboxes__label" for="example">
-          By ticking this box, I confirm that the scope and intended use of this output request is in accordance with the purpose described in DSA-0000-0000
+          I confirm that this output request is within the purposes described in DSA-0000-0000
         </label>
       </div>
    </div>
@@ -73,7 +73,7 @@
 <br>      
 
   {{ button({
-        text: "Confirm and submit",
+        text: "Confirm and send",
         href: "upload-results-confirmation-page"
       }) }}
 

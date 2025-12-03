@@ -13,7 +13,7 @@
     <div class="nhsuk-grid-column-two-thirds">
 
       {{ panel({
-        titleText: "Request created"
+        titleText: "Output request created"
       }) }}
 
       <h2>Request details</h2>
@@ -39,7 +39,7 @@
           },
           {
             key: {
-              text: "contextual information"
+              text: "Additional information"
             },
             value: {
               text: "example contextual information about the file that the user has entered on the previous step"
@@ -49,14 +49,14 @@
       }) }}
 
       <h2>What happens next</h2>
-      <p>Your file is now with the output checker team and will be reviewed within 3 working days.</p>
-      <p>You will receive an email to say whether the file has been approved or rejected.</p>
-      <p>If approved, you will be able to download your results via a link in the approval email. This link will expire after 7 days. After this you'll need to submit the output request again</p>
+      <p>Your request will be reviewed by the output checker team within 3 working days.</p>
+      <p>Once approved you can download your results via a link in your approval email. </p>
+      
 
       {% from 'button/macro.njk' import button %}
 
 {{ button({
-  text: "Go to all results"
+  text: "Go to all output requests"
 }) }}
       
 

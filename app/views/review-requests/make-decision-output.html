@@ -29,42 +29,109 @@
         text: "File name"
       },
       value: {
-        text: "txt"
+        html: "<a class=\"nhsuk-link\" href=\"/download/data.txt\">data.txt</a>"
       
       }
     },
     {
       key: {
-        text: "Status"
+        text: "Priority"
       },
       value: {
-        text: "Pending"
+        html: '<span class="nhsuk-tag nhsuk-tag--yellow">Fast track</span>'
       }
     },
     {
       key: {
-        text: "Contact information"
+        text: "Requested by"
       },
       value: {
-        html: "73 Roman Rd<br>Leeds<br> LS2 5ZN"
+        html: "example@nhs.net"
       }
     },
     {
       key: {
-        text: "Contact details"
+        text: "Contextual information"
       },
       value: {
-        html: "<p>07700 900362</p><p>karen.francis@example.com</p>"
+        html: "<p>Example contextual information</p>"
       }
     }
   ]
 }) }}
 
+{% from "warning-callout/macro.njk" import warningCallout %}
 
-      {{ button({
-        text: "Continue",
-        href: "upload-results-additional-information"
-      }) }}
+{{ warningCallout({
+  heading: "Auto check results",
+  text: "The output request was not a csv file type - no result."
+}) }}
+
+<h2>Your output checks</h2>
+
+{% from "checkboxes/macro.njk" import checkboxes %}
+
+{{ checkboxes({
+  idPrefix: "example",
+  name: "example",
+  fieldset: {
+    legend: {
+      text: "What did you check?",
+      size: "l",
+      isPageHeading: false
+    }
+  },
+  hint: {
+    text: "Select all options that apply"
+  },
+  items: [
+    {
+      value: "numbers",
+      text: "Numbers"
+    },
+    {
+      value: "text",
+      text: "Text"
+    },
+    {
+      value: "code",
+      text: "Code"
+    },
+    {
+      value: "other",
+      text: "Other"
+    }
+  ]
+}) }}
+
+{% from "radios/macro.njk" import radios %}
+
+{{ radios({
+  idPrefix: "example",
+  name: "Your decision",
+  fieldset: {
+    legend: {
+      text: "Your decision",
+      size: "l",
+      isPageHeading: true
+    }
+  },
+  items: [
+    {
+      value: "approved",
+      text: "Approved"
+    },
+    {
+      value: "rejected",
+      text: "Rejected"
+    }
+  ]
+}) }}
+
+{{ button({
+  text: "Continue",
+  href: "upload-results-additional-information"
+}) }}
 
       
 

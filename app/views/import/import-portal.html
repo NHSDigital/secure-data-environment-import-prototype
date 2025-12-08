@@ -1,5 +1,14 @@
 {% extends 'layout.html' %}
 
+{% block header %}
+  {{ header({
+    service: {
+      text: 'Secure Data Environment',
+      href: "/"
+    }
+  }) }}
+{% endblock %}
+
 {% block content %}
 
 <h1>Secure Data Environment (SDE) portal</h1>

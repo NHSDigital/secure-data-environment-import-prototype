@@ -9,7 +9,7 @@
   {% from 'back-link/macro.njk' import backLink %}
 
 {{ backLink({
-  href: "#",
+  href: "output-requests",
   text: "Back"
 }) }}
 {% endblock %}
@@ -206,7 +206,8 @@
 
 <div class="nhsuk-button-group">
   {{ button({
-    text: "Submit decision"
+    text: "Submit decision",
+    href: "output-requests"
   }) }}
 
   <a href="#" class="nhsuk-link">Cancel</a>

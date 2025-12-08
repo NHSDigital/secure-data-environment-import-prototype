@@ -36,3 +36,39 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize on page load
   toggleRejectionReasons();
 });
+
+// Handle select-all checkbox for output requests unassigned tab
+document.addEventListener('DOMContentLoaded', function() {
+  const selectAllCheckbox = document.getElementById('selectAllUnassignedOutput');
+  const rowCheckboxes = document.querySelectorAll('input[name="unassignedOutputRequest"]');
+  
+  if (!selectAllCheckbox) return; // Exit if checkbox not on this page
+  
+  function updateSelectAllState() {
+    const checkedCount = Array.from(rowCheckboxes).filter(cb => cb.checked).length;
+    const totalCount = rowCheckboxes.length;
+    
+    if (checkedCount === 0) {
+      selectAllCheckbox.indeterminate = false;
+      selectAllCheckbox.checked = false;
+    } else if (checkedCount === totalCount) {
+      selectAllCheckbox.indeterminate = false;
+      selectAllCheckbox.checked = true;
+    } else {
+      selectAllCheckbox.indeterminate = true;
+      selectAllCheckbox.checked = false;
+    }
+  }
+  
+  selectAllCheckbox.addEventListener('change', function() {
+    rowCheckboxes.forEach(checkbox => {
+      checkbox.checked = this.checked;
+    });
+  });
+  
+  rowCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', updateSelectAllState);
+  });
+  
+  updateSelectAllState();
+});

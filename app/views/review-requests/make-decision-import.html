@@ -9,48 +9,204 @@
   {% from 'back-link/macro.njk' import backLink %}
 
 {{ backLink({
-  href: "#",
+  href: "import-requests",
   text: "Back"
 }) }}
 {% endblock %}
 
 {% block content %}
   <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
+    <div class="nhsuk-width-container">
 
-      <h1>Create a request to output results</h1>
+      <h1>Make a decision on request 90</h1>
       
-   {% from 'inset-text/macro.njk' import insetText %}
+{% from "summary-list/macro.njk" import summaryList %}
 
-<h2>Before you start</h2>
-  <ul>
-    <li>Prepare your file following the Disclosure Control Rules</li>
-    <li>Your file should not exceed 50MB and should be one of the following acceptable file formats: PY, JSON, CSV, TXT, MD, TEX, PDF, SQL, XLS, XLSX, RST, R, RDATA, IPYNB, JPEG, JPG, SVG, PNG or GIF.</li>
-  </ul>
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "File name"
+      },
+      value: {
+        html: "<a class=\"nhsuk-link\" href=\"/download/data.txt\">data.txt</a>"
+      
+      }
+    },
+    {
+      key: {
+        text: "Priority"
+      },
+      value: {
+        html: '<span class="nhsuk-tag nhsuk-tag--yellow">Fast track</span>'
+      }
+    },
+    {
+      key: {
+        text: "Requested by"
+      },
+      value: {
+        html: "example@nhs.net"
+      }
+    },
+    {
+      key: {
+        text: "Contextual information"
+      },
+      value: {
+        html: "<p>Example contextual information</p>"
+      }
+    }
+  ]
+}) }}
 
 
 
+<h2>Your import checks</h2>
 
-   <h2>Choose a file to output</h2>   
-   <p>Choose the file containing the data set you would like to output. You will add additional information in the next step.</p>
+{% from "checkboxes/macro.njk" import checkboxes %}
 
+{{ checkboxes({
+  idPrefix: "example",
+  name: "example",
+  fieldset: {
+    legend: {
+      text: "What did you check?",
+      size: "l",
+      isPageHeading: false
+    }
+  },
+  hint: {
+    text: "Select all options that apply"
+  },
+  items: [
+    {
+      value: "numbers",
+      text: "Numbers"
+    },
+    {
+      value: "text",
+      text: "Text"
+    },
+    {
+      value: "code",
+      text: "Code"
+    },
+    {
+      value: "other",
+      text: "Other"
+    }
+  ]
+}) }}
 
+{% set otherReasonInput %}
+  {% from "textarea/macro.njk" import textarea %}
+  {{ textarea({
+    id: "otherReason",
+    name: "otherReason",
+    label: {
+      text: "Provide further information"
+    },
+    rows: 5
+  }) }}
+{% endset %}
 
+{% from "radios/macro.njk" import radios %}
 
+{{ radios({
+  idPrefix: "decision",
+  name: "decision",
+  fieldset: {
+    legend: {
+      text: "Your decision",
+      size: "l",
+      isPageHeading: true
+    }
+  },
+  items: [
+    {
+      value: "approved",
+      text: "Approved"
+    },
+    {
+      value: "rejected",
+      text: "Rejected"
+    }
+  ]
+}) }}
 
+<div id="rejectionReasonsContainer" style="display: none; margin-top: 24px;">
+  {% from "checkboxes/macro.njk" import checkboxes %}
+  {% from "textarea/macro.njk" import textarea %}
+{% from "textarea/macro.njk" import textarea %}
 
-<div class="nhsuk-u-padding-bottom-6">
-  <label class="nhsuk-u-visually-hidden">
-    Upload a file
-  </label><br>
-  <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+{% set emailHtml %}
+  {{ textarea({
+    id: "email",
+    name: "email",
+    classes: "nhsuk-u-width-two-thirds",
+    label: {
+      text: "Enter further information about the rejection"
+    }
+  }) }}
+{% endset -%}
+
+  {{ checkboxes({
+    idPrefix: "rejectionReasons",
+    name: "rejectionReasons",
+    fieldset: {
+      legend: {
+        text: "Why are you rejecting this request?",
+        size: "m",
+        isPageHeading: false
+      }
+    },
+    items: [
+      {
+        value: "unrounded",
+        text: "Unrounded counts"
+      },
+      {
+        value: "noContext",
+        text: "Not enough context provided"
+      },
+      {
+        value: "countUnder10",
+        text: "Counts under 10"
+      },
+      {
+        value: "rowCount",
+        text: "Row count exceeded"
+      },
+      {
+        value: "fileType",
+        text: "File type not allowed"
+      },
+      {
+        value: "pii",
+        text: "Contained personally identifiable information"
+      },
+      {
+        value: "other",
+        text: "Other or add further information",
+        conditional: {
+          html: emailHtml
+        }
+      }
+    ]
+  }) }}
 </div>
 
+{% from "button/macro.njk" import button %}
 
-      {{ button({
-        text: "Continue",
-        href: "upload-results-additional-information"
-      }) }}
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Submit decision",
+    href: "import-requests"
+  }) }}
+
+  <a href="import-requests" class="nhsuk-link">Cancel</a>
+</div>
 
       
 

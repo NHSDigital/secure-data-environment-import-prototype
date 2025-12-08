@@ -194,7 +194,7 @@
         { text: "research.data@oxford.ac.uk" },
         { text: "DSA-4829-1503" },
         { text: "j.turner@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/1001/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/1001/unassign">Unassign</a>' }
       ],
       [
         { text: "1002" },
@@ -204,7 +204,7 @@
         { text: "data.access@imperial.ac.uk" },
         { text: "DSA-0391-7742" },
         { text: "k.patel@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/1002/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/1002/unassign">Unassign</a>' }
       ],
       [
         { text: "1003" },
@@ -214,7 +214,7 @@
         { text: "info@ucl-research.ac.uk" },
         { text: "DSA-6612-3008" },
         { text: "m.oneill@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/1003/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/1003/unassign">Unassign</a>' }
       ],
       [
         { text: "1004" },
@@ -224,7 +224,7 @@
         { text: "research@kcl.ac.uk" },
         { text: "DSA-2074-8906" },
         { text: "l.brown@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/1004/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/1004/unassign">Unassign</a>' }
       ],
       [
         { text: "1005" },
@@ -234,7 +234,7 @@
         { text: "enquiries@edinburgh-research.ac.uk" },
         { text: "DSA-5140-2239" },
         { text: "s.ahmed@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/1005/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/1005/unassign">Unassign</a>' }
       ],
       [
         { text: "1006" },
@@ -244,7 +244,7 @@
         { text: "studies@manchester.ac.uk" },
         { text: "DSA-3307-4411" },
         { text: "p.green@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/1006/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/1006/unassign">Unassign</a>' }
       ]
     ]
     
@@ -267,6 +267,7 @@
     caption: "",
     firstCellIsHeader: false,
     head: [
+      { html: '<input type="checkbox" id="selectAllUnassignedOutput" class="app-checkbox-header" aria-label="Select all unassigned requests">' },
       { text: "ID" },
       { text: "File name", format: "text" },
       { text: "Priority", format: "text" },
@@ -278,103 +279,113 @@
     ],
     rows: [
       [
+        { html: '<input type="checkbox" name="unassignedOutputRequest" value="2001" class="app-checkbox">' },
         { text: "2001" },
         { html: '<a class="nhsuk-link" href="/requests/2001">patient-2001.json</a>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--yellow">Fast track</span>' },
         { text: "2025-11-08 10:12" },
         { text: "research.team@ox.ac.uk" },
         { text: "DSA-1234-5678" },
-        { text: "a.smith@nhs.net" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
         { html: '<a class="nhsuk-link" href="/requests/2001/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedOutputRequest" value="2002" class="app-checkbox">' },
         { text: "2002" },
         { html: '<a class="nhsuk-link" href="/requests/2002">export-wardX-2002.zip</a>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--yellow">Fast track</span>' },
         { text: "2025-11-07 09:03" },
         { text: "data.team@imperial.ac.uk" },
         { text: "DSA-8765-4321" },
-        { text: "b.jones@nhs.net" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
         { html: '<a class="nhsuk-link" href="/requests/2002/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedOutputRequest" value="2003" class="app-checkbox">' },
         { text: "2003" },
         { html: '<a class="nhsuk-link" href="/requests/2003">clinic-report-2003.csv</a>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { text: "2025-11-06 15:20" },
         { text: "info@ucl-research.ac.uk" },
         { text: "DSA-2381-5599" },
-        { text: "c.clark@nhs.net" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
         { html: '<a class="nhsuk-link" href="/requests/2003/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedOutputRequest" value="2004" class="app-checkbox">' },
         { text: "2004" },
         { html: '<a class="nhsuk-link" href="/requests/2004">ward-summary-2004.xlsx</a>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { text: "2025-11-05 11:05" },
         { text: "enquiries@edinburgh-research.ac.uk" },
         { text: "DSA-4020-1102" },
-        { text: "d.evans@nhs.net" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
         { html: '<a class="nhsuk-link" href="/requests/2004/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedOutputRequest" value="2005" class="app-checkbox">' },
         { text: "2005" },
         { html: '<a class="nhsuk-link" href="/requests/2005">study-export-2005.json</a>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { text: "2025-11-04 09:30" },
         { text: "studies@manchester.ac.uk" },
         { text: "DSA-5501-3300" },
-        { text: "e.fisher@nhs.net" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
         { html: '<a class="nhsuk-link" href="/requests/2005/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedOutputRequest" value="2006" class="app-checkbox">' },
         { text: "2006" },
         { html: '<a class="nhsuk-link" href="/requests/2006">batch-export-2006.tar.gz</a>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { text: "2025-11-03 14:50" },
         { text: "research@kcl.ac.uk" },
         { text: "DSA-6677-8899" },
-        { text: "f.green@nhs.net" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
         { html: '<a class="nhsuk-link" href="/requests/2006/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedOutputRequest" value="2007" class="app-checkbox">' },
         { text: "2007" },
         { html: '<a class="nhsuk-link" href="/requests/2007">export-wardY-2007.zip</a>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { text: "2025-11-02 08:10" },
         { text: "data.access@imperial.ac.uk" },
         { text: "DSA-7733-2211" },
-        { text: "g.hall@nhs.net" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
         { html: '<a class="nhsuk-link" href="/requests/2007/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedOutputRequest" value="2008" class="app-checkbox">' },
         { text: "2008" },
         { html: '<a class="nhsuk-link" href="/requests/2008">clinic-report-2008.csv</a>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { text: "2025-11-01 16:40" },
         { text: "research.data@oxford.ac.uk" },
         { text: "DSA-8844-5566" },
-        { text: "h.lee@nhs.net" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
         { html: '<a class="nhsuk-link" href="/requests/2008/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedOutputRequest" value="2009" class="app-checkbox">' },
         { text: "2009" },
         { html: '<a class="nhsuk-link" href="/requests/2009">ward-summary-2009.xlsx</a>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { text: "2025-10-31 10:00" },
         { text: "enquiries@edinburgh-research.ac.uk" },
         { text: "DSA-9900-1122" },
-        { text: "i.morris@nhs.net" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
         { html: '<a class="nhsuk-link" href="/requests/2009/assign">Assign</a>' }
       ],
       [
+        { html: '<input type="checkbox" name="unassignedOutputRequest" value="2010" class="app-checkbox">' },
         { text: "2010" },
         { html: '<a class="nhsuk-link" href="/requests/2010">study-export-2010.json</a>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { text: "2025-10-30 13:15" },
         { text: "studies@manchester.ac.uk" },
         { text: "DSA-1012-3344" },
-        { text: "j.parker@nhs.net" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
         { html: '<a class="nhsuk-link" href="/requests/2010/assign">Assign</a>' }
       ]
     ]
@@ -413,7 +424,7 @@
         { text: "research@manchester.ac.uk" },
         { text: "DSA-2222-3333" },
         { text: "c.wilson@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/3001/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/3001/unassign">Unassign</a>' }
       ],
       [
         { text: "3002" },
@@ -423,7 +434,7 @@
         { text: "info@ucl-research.ac.uk" },
         { text: "DSA-4444-5555" },
         { text: "d.brown@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/3002/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/3002/unassign">Unassign</a>' }
       ],
       [
         { text: "3003" },
@@ -433,7 +444,7 @@
         { text: "research.data@ox.ac.uk" },
         { text: "DSA-5555-6666" },
         { text: "e.smith@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/3003/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="#">Assign to me</a><br><a class="nhsuk-link no-wrap" href="/requests/3003/unassign">Unassign</a>' }
       ],
       [
         { text: "3004" },
@@ -443,7 +454,7 @@
         { text: "data.team@imperial.ac.uk" },
         { text: "DSA-6666-7777" },
         { text: "f.jones@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/3004/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/3004/unassign">Unassign</a>' }
       ],
       [
         { text: "3005" },
@@ -453,7 +464,7 @@
         { text: "enquiries@edinburgh-research.ac.uk" },
         { text: "DSA-7777-8888" },
         { text: "g.hill@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/3005/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="#">Assign to me</a><br><a class="nhsuk-link no-wrap" href="/requests/3005/unassign">Unassign</a>' }
       ],
       [
         { text: "3006" },
@@ -463,7 +474,7 @@
         { text: "studies@manchester.ac.uk" },
         { text: "DSA-8888-9999" },
         { text: "h.baker@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/3006/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/3006/unassign">Unassign</a>' }
       ],
       [
         { text: "3007" },
@@ -473,7 +484,7 @@
         { text: "research@kcl.ac.uk" },
         { text: "DSA-1111-2222" },
         { text: "i.clark@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/3007/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/3007/unassign">Unassign</a>' }
       ],
       [
         { text: "3008" },
@@ -483,7 +494,7 @@
         { text: "info@ucl-research.ac.uk" },
         { text: "DSA-3333-4444" },
         { text: "j.evans@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/3008/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="#">Assign to me</a><br><a class="nhsuk-link no-wrap" href="/requests/3008/unassign">Unassign</a>' }
       ],
       [
         { text: "3009" },
@@ -493,7 +504,7 @@
         { text: "data.access@imperial.ac.uk" },
         { text: "DSA-5550-1212" },
         { text: "k.ross@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/3009/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="#">Assign to me</a><br><a class="nhsuk-link no-wrap" href="/requests/3009/unassign">Unassign</a>' }
       ],
       [
         { text: "3010" },
@@ -503,7 +514,7 @@
         { text: "enquiries@edinburgh-research.ac.uk" },
         { text: "DSA-7770-2020" },
         { text: "l.davies@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/3010/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/3010/unassign">Unassign</a>' }
       ]
     ]
   }) }}
@@ -548,7 +559,7 @@
         { text: "enquiries@edinburgh-research.ac.uk" },
         { text: "DSA-1010-2020" },
         { text: "f.cole@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/4002/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="#">Assign to me</a><br><a class="nhsuk-link no-wrap" href="/requests/3009/unassign">Unassign</a>' }
       ],
       [
         { text: "4003" },
@@ -558,7 +569,7 @@
         { text: "research.data@oxford.ac.uk" },
         { text: "DSA-2020-3030" },
         { text: "g.brown@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/4003/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/3001/unassign">Unassign</a>' }
       ],
       [
         { text: "4004" },
@@ -568,7 +579,7 @@
         { text: "studies@manchester.ac.uk" },
         { text: "DSA-3030-4040" },
         { text: "h.fox@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/4004/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="#">Assign to me</a><br><a class="nhsuk-link no-wrap" href="/requests/3009/unassign">Unassign</a>' }
       ],
       [
         { text: "4005" },
@@ -578,7 +589,7 @@
         { text: "data.team@imperial.ac.uk" },
         { text: "DSA-4040-5050" },
         { text: "i.hughes@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/4005/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="#">Assign to me</a><br><a class="nhsuk-link no-wrap" href="/requests/3009/unassign">Unassign</a>' }
       ],
       [
         { text: "4006" },
@@ -608,7 +619,7 @@
         { text: "research@kcl.ac.uk" },
         { text: "DSA-7070-8080" },
         { text: "l.brown@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/4008/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/3001/unassign">Unassign</a>' }
       ],
       [
         { text: "4009" },
@@ -618,7 +629,7 @@
         { text: "research.team@ox.ac.uk" },
         { text: "DSA-8080-9090" },
         { text: "m.lewis@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/4009/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="#">Assign to me</a><br><a class="nhsuk-link no-wrap" href="/requests/3009/unassign">Unassign</a>' }
       ],
       [
         { text: "4010" },
@@ -628,7 +639,7 @@
         { text: "enquiries@edinburgh-research.ac.uk" },
         { text: "DSA-9090-1010" },
         { text: "n.martin@nhs.net" },
-        { html: '<a class="nhsuk-link" href="/requests/4010/assign">Assign</a>' }
+        { html: '<a class="nhsuk-link no-wrap" href="make-decision-output">Make decision</a><br><a class="nhsuk-link no-wrap" href="/requests/3001/unassign">Unassign</a>' }
       ]
     ]
   }) }}

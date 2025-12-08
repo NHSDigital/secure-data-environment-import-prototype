@@ -1,0 +1,242 @@
+{% extends 'layout.html' %}
+
+{% set pageName = "Output requests" %}
+{% set containerClass = "nhsuk-width-container-fluid" %}
+
+
+<!-- For adding a breadcrumb or back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs and https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block beforeContent %}
+{% endblock %}
+
+
+{% block content %}
+<main>
+<div class="fullscreen-table">
+
+<h1>Output requests</h1>
+
+{% from "button/macro.njk" import button %}
+
+{{ button({
+  text: "New output request",
+  href: "upload-results-start-page"
+}) }}
+
+{% from 'details/macro.njk' import details %}
+
+{% call details({
+  summaryText: "Filter requests",
+  classes: "nhsuk-expander"
+}) %}
+<div class="nhsuk-grid-row">
+ <div class="nhsuk-grid-column-one-third">
+ {% from 'input/macro.njk' import input %}
+
+{{ input({
+  label: {
+    text: "Requested by"
+  },
+  hint: {
+    text: "Enter full or partial email address"
+  },
+  id: "RequestedBy",
+  name: "RequestedBy"
+}) }}
+</div>
+
+<div class="nhsuk-grid-column-one-third">
+{{ input({
+  label: {
+    text: "Agreement"
+  },
+  hint: {
+    text: "Enter full or partial DSA number"
+  },
+  id: "Agreement",
+  name: "Agreement"
+}) }}
+</div>
+
+<div class="nhsuk-grid-column-one-third">
+{{ input({
+  label: {
+    text: "Output checker"
+  },
+  hint: {
+    text: "Enter full or partial email address"
+  },
+  id: "OutputChecker",
+  name: "OutputChecker"
+}) }}
+ </div>
+</div>
+
+<div class="nhsuk-grid-row">
+ <div class="nhsuk-grid-column-one-third">
+ {% from 'select/macro.njk' import select %}
+
+{{ select({
+  id: "select-1",
+  name: "select-1",
+  label: {
+    text: "Priority"
+  },
+  items: [
+    {
+      value: 1,
+      text: "Normal"
+    },
+    {
+      value: 2,
+      text: "Fast track"
+    }
+  ]
+}) }}
+</div>
+
+<div class="nhsuk-grid-column-one-third">
+{% from 'date-input/macro.njk' import dateInput %}
+
+{{ dateInput({
+  id: "DateStart",
+  namePrefix: "DateStart",
+  fieldset: {
+    legend: {
+      text: "Date range start",
+      classes: "nhsuk-label"
+    }
+  },
+
+  items: [
+    {
+      name: "day",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "month",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "year",
+      classes: "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+</div>
+
+<div class="nhsuk-grid-column-one-third">
+{% from 'date-input/macro.njk' import dateInput %}
+
+{{ dateInput({
+  id: "DateStart",
+  namePrefix: "DateEnd",
+  fieldset: {
+    legend: {
+      text: "Date range end",
+      classes: "nhsuk-label"
+    }
+  },
+
+  items: [
+    {
+      name: "day",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "month",
+      classes: "nhsuk-input--width-2"
+    },
+    {
+      name: "year",
+      classes: "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+</div>
+
+{% from 'button/macro.njk' import button %}
+
+{{ button({
+  text: "Apply filters"
+}) }}
+
+{% endcall %}
+
+   
+{% from 'tables/macro.njk' import table %}
+
+
+
+
+  {{ table({
+    responsive: false,
+    panel: false,
+    caption: "",
+    firstCellIsHeader: false,
+    head: [
+      { text: "ID" },
+      { text: "File name and contextual information", format: "text" },
+      { text: "Status", format: "text" },
+      { text: "Request date", format: "text" },
+      { text: "Requested by", format: "text" },
+      { text: "Action", format: "text" }
+    ],
+    rows: [
+      [
+        { text: "1001" },
+        { html: '<a class="nhsuk-link" href="/requests/1001">patient-1001.json</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--yellow">Fast track</span>' },
+        { text: "2025-11-09 14:22 pm" },
+        { text: "research.data@oxford.ac.uk" },
+        { html: '<a class="nhsuk-link" href="/requests/1001/assign">View details</a>' }
+      ],
+      [
+        { text: "1002" },
+        { html: '<a class="nhsuk-link" href="/requests/1002">export-wardB-1002.zip</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--yellow">Fast track</span>' },
+        { text: "2025-11-09 11:03 am" },
+        { text: "data.access@imperial.ac.uk" },
+        { html: '<a class="nhsuk-link" href="/requests/1002/assign">View details</a>' }
+      ],
+      [
+        { text: "1003" },
+        { html: '<a class="nhsuk-link" href="/requests/1003">clinic-report-1003.csv</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-08 16:45 pm" },
+        { text: "info@ucl-research.ac.uk" },
+        { html: '<a class="nhsuk-link" href="/requests/1003/assign">View details</a>' }
+      ],
+      [
+        { text: "1004" },
+        { html: '<a class="nhsuk-link" href="/requests/1004">batch-export-1004.tar.gz</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-09 09:12 am" },
+        { text: "research@kcl.ac.uk" },
+        { html: '<a class="nhsuk-link" href="/requests/1004/assign">View details</a>' }
+      ],
+      [
+        { text: "1005" },
+        { html: '<a class="nhsuk-link" href="/requests/1005">ward-summary-1005.xlsx</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-09 08:01 am" },
+        { text: "enquiries@edinburgh-research.ac.uk" },
+        { html: '<a class="nhsuk-link" href="/requests/1005/assign">View details</a>' }
+      ],
+      [
+        { text: "1006" },
+        { html: '<a class="nhsuk-link" href="/requests/1006">study-export-1006.json</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { text: "2025-11-09 07:45 am" },
+        { text: "studies@manchester.ac.uk" },
+        { html: '<a class="nhsuk-link" href="/requests/1006/assign">View details</a>' }
+      ]
+    ]
+    
+  }) }}
+
+
+</div> 
+</main>
+ 
+{% endblock %}

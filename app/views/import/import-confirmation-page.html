@@ -39,10 +39,10 @@
           },
           {
             key: {
-              text: "contextual information"
+              text: "Additional information"
             },
             value: {
-              text: "example contextual information about the file that the user has entered on the previous step"
+              text: "example additional information about the file that the user has entered on the previous step"
             }
           }
         ]
@@ -55,15 +55,9 @@
 
       {% from 'button/macro.njk' import button %}
 
-{{ button({
-  text: "View all requests",
-  href: "import-table"
-}) }}
+
       
-
-
-
-
+<p><a href="import-table" class="nhsuk-link">View all import requests</a></p>
 
     </div>
   </div>

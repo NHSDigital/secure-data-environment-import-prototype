@@ -3,18 +3,18 @@
 {% from 'action-link/macro.njk' import actionLink %}
 
 {% block content %}
-
+<h1>Prototype entry points</h2>
 <h2>Create requests</h2>
 <p>User journeys for requesting reference data/code imports and results ouputs</p>
 
 {{ actionLink({
-  text: "Import data/code",
+  text: "Import reference data/code",
   href: "import/import-portal"
 }) }}
 <br>
 {{ actionLink({
   text: "Output results",
-  href: "output-results/upload-results-table"
+  href: "vdi/vdi-desktop"
 }) }}
 
 <br>
@@ -24,7 +24,7 @@
 <p>User journeys for reviewing import and output requests</p>
 {{ actionLink({
   text: "Review all requests",
-  href: "review-requests/output-requests"
+  href: "vdi/vdi-desktop-checker"
 }) }}
 
 {% endblock %}

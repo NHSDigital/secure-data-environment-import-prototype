@@ -100,3 +100,53 @@
   background-position: center;
   background-size: 14px;
 }
+
+// Large button styling with icon
+.nhsuk-button--app-large {
+  background-color: #003DA5;
+  color: white;
+  padding: 20px 30px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  
+  &::after {
+    content: "▶";
+    font-size: 20px;
+    margin-left: 8px;
+  }
+  
+  &:hover {
+    background-color: #002570;
+  }
+  
+  &:focus {
+    outline: 3px solid #ffbf47;
+    outline-offset: 2px;
+  }
+}
+
+// Image button styling
+.app-button-image {
+  display: inline-block;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+  
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  &:focus {
+    outline: 3px solid #ffbf47;
+    outline-offset: 2px;
+  }
+}

@@ -1,13 +1,6 @@
-{% extends 'layout.html' %}
+{% extends 'externalrequestslayout.html' %}
 
-{% block header %}
-  {{ header({
-    service: {
-      text: 'Import reference data or code',
-      href: "/"
-    }
-  }) }}
-{% endblock %}
+
 
 {% set pageName = "Output requests" %}
 {% set containerClass = "nhsuk-width-container-fluid" %}
@@ -27,10 +20,7 @@
 
 {% from "button/macro.njk" import button %}
 
-{{ button({
-  text: "New import request",
-  href: "import-question-page"
-}) }}
+
 
 {% from 'details/macro.njk' import details %}
 

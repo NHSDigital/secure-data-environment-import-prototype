@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'externalrequestslayout.html' %}
 
 {% set pageName = "Output requests" %}
 {% set containerClass = "nhsuk-width-container-fluid" %}
@@ -20,7 +20,7 @@
 
 {{ button({
   text: "New output request",
-  href: "upload-results-start-page"
+  href: "/output-results/upload-results-start-page"
 }) }}
 
 {% from 'details/macro.njk' import details %}

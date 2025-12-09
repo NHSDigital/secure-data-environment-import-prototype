@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+  {{ header({
+    service: {
+      text: 'Import reference data or code',
+      href: "/"
+    }
+  }) }}
+{% endblock %}
+
+{% from 'breadcrumb/macro.njk' import breadcrumb %}
+{% from 'button/macro.njk' import button %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block pageScripts %}
+<style>
+  body, html {
+    background-color: #005eb8;
+  }
+  .nhsuk-main-wrapper {
+    background-color: #005eb8;
+  }
+  .nhsuk-footer {
+    display: none;
+  }
+  h1 {
+    color: white;
+  }
+</style>
+{% endblock %}
+
+{% block beforeContent %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+{{ backLink({
+  href: "#",
+  text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1>VDI Desktop</h1>
+      
+
+
+
+      <a href="/review-requests/output-requests" class="app-button-image">
+        <img src="/images/output-button.png" alt="Output Your Results" >
+      </a>
+
+      
+
+    </div>
+  </div>
+{% endblock %}

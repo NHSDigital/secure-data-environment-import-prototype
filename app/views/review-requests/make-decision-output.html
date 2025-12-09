@@ -86,13 +86,13 @@
   name: "example",
   fieldset: {
     legend: {
-      text: "What did you check?",
+      text: "",
       size: "l",
       isPageHeading: false
     }
   },
   hint: {
-    text: "Select all options that apply"
+    text: ""
   },
   items: [
     {
@@ -126,6 +126,8 @@
   }) }}
 {% endset %}
 
+
+<h2>Your decision</h2>
 {% from "radios/macro.njk" import radios %}
 
 {{ radios({
@@ -133,19 +135,19 @@
   name: "decision",
   fieldset: {
     legend: {
-      text: "Your decision",
+      text: "",
       size: "l",
       isPageHeading: true
     }
   },
   items: [
     {
-      value: "approved",
-      text: "Approved"
+      value: "approve",
+      text: "Approve"
     },
     {
-      value: "rejected",
-      text: "Rejected"
+      value: "reject",
+      text: "Reject"
     }
   ]
 }) }}
@@ -216,7 +218,7 @@
 
 <div class="nhsuk-button-group">
   {{ button({
-    text: "Submit decision",
+    text: "Apply decision",
     href: "output-requests"
   }) }}
 

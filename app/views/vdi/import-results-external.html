@@ -175,7 +175,7 @@
     firstCellIsHeader: false,
     head: [
       { text: "ID" },
-      { text: "File name and contextual information", format: "text" },
+      { text: "File name", format: "text" },
       { text: "Type", format: "text" },
       { text: "Status", format: "text" },
       { text: "Request date", format: "text" },
@@ -185,16 +185,16 @@
     rows: [
       [
         { text: "1001" },
-        { html: '<a class="nhsuk-link" href="/requests/1001">patient-1001.json</a>' },
+        { text: "patient-1001.json" },
         { text: "Code" },
-        { html: '<span class="nhsuk-tag nhsuk-tag--red">Rejected</span>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Pending</span>' },
         { text: "2025-11-09 14:22 pm" },
         { text: "research.data@oxford.ac.uk" },
         { html: '<a class="nhsuk-link" href="/requests/1001/assign">View details</a>' }
       ],
       [
         { text: "1002" },
-        { html: '<a class="nhsuk-link" href="/requests/1002">export-wardB-1002.zip</a>' },
+        { text: "export-wardB-1002.zip"},
         { text: "Code" },
         { html: '<span class="nhsuk-tag nhsuk-tag--red">Rejected</span>' },
         { text: "2025-11-09 11:03 am" },
@@ -221,9 +221,9 @@
       ],
       [
         { text: "1005" },
-        { html: '<a class="nhsuk-link" href="/requests/1005">ward-summary-1005.xlsx</a>' },
+        { text: "ward-summary-1005.xlsx" },
         { text: "Code" },
-        { html: '<span class="nhsuk-tag nhsuk-tag--green">Approved</span>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--red">Rejected</span>' },
         { text: "2025-11-09 08:01 am" },
         { text: "enquiries@edinburgh-research.ac.uk" },
         { html: '<a class="nhsuk-link" href="/requests/1005/assign">View details</a>' }

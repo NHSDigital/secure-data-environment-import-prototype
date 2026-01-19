@@ -27,13 +27,7 @@
 
       <h2>Request details</h2>
 
-      {% set siteLocationHtml %}
-        St George's Pharmacy<br>
-        46 St George's Rd<br>
-        Elephant and Castle<br>
-        London<br>
-        SE1 6ET
-      {% endset %}
+     
 
       {{ summaryList({
         classes: "nhsuk-summary-list--no-border",
@@ -58,9 +52,13 @@
       }) }}
 
       <h2>What happens next</h2>
-      <p>You will receive a confirmation email once the file has been checked. This should take less than 24 hours</p>
-      <p>If your data fails to meet mandatory criteria, you will receive an email explaining why and how to correct it. </p>
-      <p>We aim to respond to all requests within 5 working days.</p>
+      <p>We will check your file to make sure it follows the required format and uses approved characters. </p>
+      <p>If it does not pass this check, we will email you to explain what went wrong and what you need to do next. </p>
+      <p>If it passes, the SDE service team will review your file and decide to approve or reject it.</p>
+      
+      <h2>When will you hear back</h2>
+      <p>We aim to send you a decision within 5 working days.</p>
+      <p>You will get an email explaining the outcome and what to do next.</p>
 
       {% from 'button/macro.njk' import button %}
 
@@ -69,7 +67,6 @@
 <p><a href="import-portal" class="nhsuk-link">Return to the portal</a></p>
 
 
-<h2>**needs content pointing user to VDI**</h2>
     </div>
   </div>
 {% endblock %}

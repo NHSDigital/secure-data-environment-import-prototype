@@ -177,6 +177,7 @@
     head: [
       { text: "ID" },
       { text: "File name", format: "text" },
+      { text: "Priority", format: "text" },
       { text: "Status", format: "text" },
       { text: "Request date", format: "text" },
       { text: "Requested by", format: "text" },
@@ -186,22 +187,25 @@
       [
         { text: "1001" },
         { html: '<a class="nhsuk-link" href="/requests/1001">patient-1001.json</a>' },
-        { html: '<span class="nhsuk-tag nhsuk-tag--green">Approved</span>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--yellow">Fast track</span>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Pending</span>' },
         { text: "2025-11-09 14:22 pm" },
         { text: "research.data@oxford.ac.uk" },
-        { html: '<a class="nhsuk-link" href="/requests/1001/assign">View details</a>' }
+        { html: '<a class="nhsuk-link" href="output-viewdetails-pending">View details</a>' }
       ],
       [
         { text: "1002" },
         { html: '<a class="nhsuk-link" href="/requests/1002">export-wardB-1002.zip</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--green">Approved</span>' },
         { text: "2025-11-09 11:03 am" },
         { text: "data.access@imperial.ac.uk" },
-        { html: '<a class="nhsuk-link" href="/requests/1002/assign">View details</a>' }
+        { html: '<a class="nhsuk-link" href="output-viewdetails-approved">View details</a>' }
       ],
       [
         { text: "1003" },
         { html: '<a class="nhsuk-link" href="/requests/1003">clinic-report-1003.csv</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--green">Approved</span>' },
         { text: "2025-11-08 16:45 pm" },
         { text: "info@ucl-research.ac.uk" },
@@ -210,14 +214,16 @@
       [
         { text: "1004" },
         { html: '<a class="nhsuk-link" href="/requests/1004">batch-export-1004.tar.gz</a>' },
-        { html: '<span class="nhsuk-tag nhsuk-tag--red">Declined</span>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--red">Rejected</span>' },
         { text: "2025-11-09 09:12 am" },
         { text: "research@kcl.ac.uk" },
-        { html: '<a class="nhsuk-link" href="/requests/1004/assign">View details</a>' }
+        { html: '<a class="nhsuk-link" href="output-viewdetails-rejected">View details</a>' }
       ],
       [
         { text: "1005" },
         { html: '<a class="nhsuk-link" href="/requests/1005">ward-summary-1005.xlsx</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--green">Approved</span>' },
         { text: "2025-11-09 08:01 am" },
         { text: "enquiries@edinburgh-research.ac.uk" },
@@ -226,6 +232,7 @@
       [
         { text: "1006" },
         { html: '<a class="nhsuk-link" href="/requests/1006">study-export-1006.json</a>' },
+        { html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>' },
         { html: '<span class="nhsuk-tag nhsuk-tag--green">Approved</span>' },
         { text: "2025-11-09 07:45 am" },
         { text: "studies@manchester.ac.uk" },

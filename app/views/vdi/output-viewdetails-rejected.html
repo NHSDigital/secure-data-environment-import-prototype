@@ -1,0 +1,89 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+  {{ header({
+    service: {
+      text: 'Import reference data or code',
+      href: "/"
+    }
+  }) }}
+{% endblock %}
+
+{% from 'back-link/macro.njk' import backLink %}
+{% from 'button/macro.njk' import button %}
+{% from 'radios/macro.njk' import radios %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block beforeContent %}
+  {{ backLink({
+    href: "import-results-external",
+    text: "Back"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <h1 class="nhsuk-heading-l">
+        Output request 1001
+      </h1>
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "File name"
+      },
+      value: {
+        html: '<a href="bbc.co.uk">patient-1001.json</a>'
+      }
+    },
+    {
+      key: {
+        text: "Priority"
+      },
+      value: {
+        html: '<span class="nhsuk-tag nhsuk-tag--blue">Normal</span>'
+      } 
+    },
+    {
+      key: {
+        text: "Status"
+      },
+      value: {
+        html: '<span class="nhsuk-tag nhsuk-tag--red">Rejected</span>'
+      } 
+    },
+    {
+      key: {
+        text: "Requested by"
+      },
+      value: {
+        html: "dave.king4@nhs.net"
+      }
+    },
+    {
+      key: {
+        text: "Contextual information"
+      },
+      value: {
+        html: "Example contextual information about the import request."
+      }
+    },
+    {
+      key: {
+        text: "Reasons for rejection"
+      },
+      value: {
+        html: "reason 1<br>reason 2<br>Other: reason details"
+      }
+    }  
+  ]
+}) }}
+
+
+    </div>
+  </div>
+{% endblock %}

@@ -25,7 +25,7 @@
 {% block content %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
-      <h1 class="nhsuk-heading-l">
+      <h1>
         Import request 1001
       </h1>
 {% from "summary-list/macro.njk" import summaryList %}
@@ -45,7 +45,7 @@
         text: "Status"
       },
       value: {
-        html: '<span class="nhsuk-tag nhsuk-tag--blue">Pending</span>'
+        html: '<span class="nhsuk-tag nhsuk-tag--red">Rejected</span>'
       } 
     },
     {
@@ -62,6 +62,14 @@
       },
       value: {
         html: "Example contextual information about the import request."
+      }
+    },
+    {
+      key: {
+        text: "Reasons for rejection"
+      },
+      value: {
+        html: "reason 1<br>reason 2<br>Other: reason details"
       }
     }
   ]

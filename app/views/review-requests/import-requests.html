@@ -71,27 +71,7 @@
 </div>
 
 <div class="nhsuk-grid-row">
- <div class="nhsuk-grid-column-one-third">
- {% from 'select/macro.njk' import select %}
-
-{{ select({
-  id: "select-1",
-  name: "select-1",
-  label: {
-    text: "Priority"
-  },
-  items: [
-    {
-      value: 1,
-      text: "Normal"
-    },
-    {
-      value: 2,
-      text: "Fast track"
-    }
-  ]
-}) }}
-</div>
+ 
 
 <div class="nhsuk-grid-column-one-third">
 {% from 'date-input/macro.njk' import dateInput %}
@@ -152,6 +132,8 @@
   ]
 }) }}
 </div>
+</div>
+
 
 {% from 'button/macro.njk' import button %}
 

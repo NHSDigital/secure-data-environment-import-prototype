@@ -28,7 +28,7 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-width-container">
 
-      <h1>Make a decision on request 90</h1>
+      <h1 class="nhsuk-heading-l">Make a decision on request 90</h1>
       
 {% from "summary-list/macro.njk" import summaryList %}
 
@@ -77,8 +77,6 @@
   text: "The output request was not a csv file type - no result."
 }) }}
 
-<h2>Your output checks</h2>
-
 {% from "checkboxes/macro.njk" import checkboxes %}
 
 {{ checkboxes({
@@ -86,7 +84,8 @@
   name: "example",
   fieldset: {
     legend: {
-      text: "",
+      text: "What did you check?",
+      classes: "nhsuk-label--m",
       size: "l",
       isPageHeading: false
     }
@@ -127,7 +126,7 @@
 {% endset %}
 
 
-<h2>Your decision</h2>
+
 {% from "radios/macro.njk" import radios %}
 
 {{ radios({
@@ -135,8 +134,9 @@
   name: "decision",
   fieldset: {
     legend: {
-      text: "",
+      text: "Your decision",
       size: "l",
+      classes: "nhsuk-label--m",
       isPageHeading: true
     }
   },
@@ -218,7 +218,7 @@
 
 <div class="nhsuk-button-group">
   {{ button({
-    text: "Apply decision",
+    text: "Submit decision",
     href: "output-requests"
   }) }}
 

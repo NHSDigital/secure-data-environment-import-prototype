@@ -25,9 +25,9 @@
 
 {% block content %}
   <div class="nhsuk-grid-row">
-    <div class="nhsuk-width-container">
+    <div class="nhsuk-grid-column-two-thirds">
 
-      <h1 class="nhsuk-heading-l">Make a decision on request 90</h1>
+      <h1 class="nhsuk-heading-l">Make a decision on import request 90</h1>
       
 {% from "summary-list/macro.njk" import summaryList %}
 
@@ -86,11 +86,9 @@
 }) }}
 
 
-
-<h2 class="nhsuk-heading-m">Your import checks</h2>
-
 {% from "checkboxes/macro.njk" import checkboxes %}
 
+<form>
 {{ checkboxes({
   idPrefix: "example",
   name: "example",
@@ -98,6 +96,7 @@
     legend: {
       text: "What did you check?",
       size: "l",
+      classes: "nhsuk-label--m",
       isPageHeading: false
     }
   },
@@ -138,6 +137,7 @@
     legend: {
       text: "Your decision",
       size: "l",
+      classes: "nhsuk-label--m",
       isPageHeading: true
     }
   },
@@ -206,6 +206,7 @@
 
   <a href="import-requests" class="nhsuk-link">Cancel</a>
 </div>
+</form>
 
       
 

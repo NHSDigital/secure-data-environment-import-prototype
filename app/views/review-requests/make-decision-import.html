@@ -27,7 +27,7 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-width-container">
 
-      <h1>Make a decision on request 90</h1>
+      <h1 class="nhsuk-heading-l">Make a decision on request 90</h1>
       
 {% from "summary-list/macro.njk" import summaryList %}
 
@@ -44,10 +44,26 @@
     },
     {
       key: {
-        text: "Priority"
+        text: "Type"
       },
       value: {
-        html: '<span class="nhsuk-tag nhsuk-tag--yellow">Fast track</span>'
+        text: "Code"
+      }
+    },
+    {
+      key: {
+        text: "Requested date"
+      },
+      value: {
+        text: "2025-11-09 14:22 pm"
+      }
+    },
+    {
+      key: {
+        text: "Agreement"
+      },
+      value: {
+        text: "DSA-0000-0000"
       }
     },
     {
@@ -55,7 +71,7 @@
         text: "Requested by"
       },
       value: {
-        html: "example@nhs.net"
+        text: "example@nhs.net"
       }
     },
     {
@@ -71,7 +87,7 @@
 
 
 
-<h2>Your import checks</h2>
+<h2 class="nhsuk-heading-m">Your import checks</h2>
 
 {% from "checkboxes/macro.njk" import checkboxes %}
 

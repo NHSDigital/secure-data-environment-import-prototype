@@ -1,5 +1,14 @@
 {% extends 'layout.html' %}
 
+{% block beforeContent %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+{{ backLink({
+  href: "#",
+  text: "Back"
+}) }}
+{% endblock %}
+
 {% block header %}
   {{ header({
     service: {
@@ -14,31 +23,26 @@
 
 {% set mainClasses = "nhsuk-main-wrapper--s" %}
 
-{% block beforeContent %}
-  {% from 'back-link/macro.njk' import backLink %}
 
-{{ backLink({
-  href: "#",
-  text: "Back"
-}) }}
-{% endblock %}
 
 {% block content %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-      <h1>Create a new request to import reference data</h1>
+      <h1 class="nhsuk-heading-l">Create a new request to import reference data</h1>
       
-  <h2>Before you start</h2>
+  <h2 class="nhsuk-heading-m">Before you start</h2>
    <ul>
     <li>make sure you have followed the guidance on <a href="bbc.co.uk">how to prepare your file (opens in a new window)</a></li>
     <li>to ensure that the data is approved, it must not contain any Personally Identifiable Information (PII)</li>
+    <li>your file must be in CSV format and not exceed 2GB</li>
+    <li>your file name cannot contain spaces or uppercase and special characters (except for underscore)</li>
     <li>CSV headers, columns and rows must meet formatting requirements</li>
     
     
   </ul>
 
-   <h2>Choose a file to import</h2>  
+   <h2 class="nhsuk-heading-m">Choose a file to import</h2>  
    <ul>
    
    <li>you can upload one file at a time</li>

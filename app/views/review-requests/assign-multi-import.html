@@ -1,0 +1,215 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+  {{ header({
+    service: {
+      text: 'Manage import and output requests',
+      href: "/"
+    }
+  }) }}
+{% endblock %}
+
+{% from 'breadcrumb/macro.njk' import breadcrumb %}
+{% from 'button/macro.njk' import button %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block beforeContent %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+{{ backLink({
+  href: "import-requests",
+  text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">Make a decision on import request 90</h1>
+      
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "File name"
+      },
+      value: {
+        html: "<a class=\"nhsuk-link\" href=\"/download/data.txt\">data.txt</a>"
+      
+      }
+    },
+    {
+      key: {
+        text: "Type"
+      },
+      value: {
+        text: "Code"
+      }
+    },
+    {
+      key: {
+        text: "Requested date"
+      },
+      value: {
+        text: "2025-11-09 14:22 pm"
+      }
+    },
+    {
+      key: {
+        text: "Agreement"
+      },
+      value: {
+        text: "DSA-0000-0000"
+      }
+    },
+    {
+      key: {
+        text: "Requested by"
+      },
+      value: {
+        text: "example@nhs.net"
+      }
+    },
+    {
+      key: {
+        text: "Additional information"
+      },
+      value: {
+        html: "<p>Example additional information</p>"
+      }
+    }
+  ]
+}) }}
+
+
+{% from "checkboxes/macro.njk" import checkboxes %}
+
+<form>
+{{ checkboxes({
+  idPrefix: "example",
+  name: "example",
+  fieldset: {
+    legend: {
+      text: "What did you check?",
+      size: "l",
+      classes: "nhsuk-label--m",
+      isPageHeading: false
+    }
+  },
+  hint: {
+    text: "Select all options that apply"
+  },
+  items: [
+    {
+      value: "Contains no personally identifiable information",
+      text: "Contains no personally identifiable information"
+    },
+  
+    {
+      value: "other",
+      text: "Other"
+    }
+  ]
+}) }}
+
+{% set otherReasonInput %}
+  {% from "textarea/macro.njk" import textarea %}
+  {{ textarea({
+    id: "otherReason",
+    name: "otherReason",
+    label: {
+      text: "Provide further information"
+    },
+    rows: 5
+  }) }}
+{% endset %}
+
+{% from "radios/macro.njk" import radios %}
+
+{{ radios({
+  idPrefix: "decision",
+  name: "decision",
+  fieldset: {
+    legend: {
+      text: "Your decision",
+      size: "l",
+      classes: "nhsuk-label--m",
+      isPageHeading: true
+    }
+  },
+  items: [
+    {
+      value: "approved",
+      text: "Approved"
+    },
+    {
+      value: "rejected",
+      text: "Rejected"
+    }
+  ]
+}) }}
+
+<div id="rejectionReasonsContainer" style="display: none; margin-top: 24px;">
+  {% from "checkboxes/macro.njk" import checkboxes %}
+  {% from "textarea/macro.njk" import textarea %}
+{% from "textarea/macro.njk" import textarea %}
+
+{% set emailHtml %}
+  {{ textarea({
+    id: "email",
+    name: "email",
+    classes: "nhsuk-u-width-two-thirds",
+    label: {
+      text: "Enter further information about the rejection"
+    }
+  }) }}
+{% endset -%}
+
+  {{ checkboxes({
+    idPrefix: "rejectionReasons",
+    name: "rejectionReasons",
+    fieldset: {
+      legend: {
+        text: "Why are you rejecting this request?",
+        size: "m",
+        isPageHeading: false
+      }
+    },
+    items: [
+      
+      {
+        value: "pii",
+        text: "Contained personally identifiable information"
+      },
+      {
+        value: "other",
+        text: "Other or add further information",
+        conditional: {
+          html: emailHtml
+        }
+      }
+    ]
+  }) }}
+</div>
+
+{% from "button/macro.njk" import button %}
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Submit decision",
+    href: "import-requests"
+  }) }}
+
+  <a href="import-requests" class="nhsuk-link">Cancel</a>
+</div>
+</form>
+
+      
+
+    </div>
+  </div>
+{% endblock %}

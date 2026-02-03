@@ -1,0 +1,143 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+  {{ header({
+    service: {
+      text: 'Manage import and output requests',
+      href: "/"
+    }
+  }) }}
+{% endblock %}
+
+{% from 'breadcrumb/macro.njk' import breadcrumb %}
+{% from 'button/macro.njk' import button %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+{% block beforeContent %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+{{ backLink({
+  href: "import-requests",
+  text: "Back"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">Assign to an import checker</h1>
+      
+{% from "summary-list/macro.njk" import summaryList %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "ID"
+      },
+      value: {
+        text: "001"
+      }
+    },
+    {
+      key: {
+        text: "File name"
+      },
+      value: {
+        html: "<a class=\"nhsuk-link\" href=\"/download/data.txt\">data.txt</a>"
+      
+      }
+    },
+    {
+      key: {
+        text: "Type"
+      },
+      value: {
+        text: "Code"
+      }
+    },
+    {
+      key: {
+        text: "Requested date"
+      },
+      value: {
+        text: "2025-11-09 14:22 pm"
+      }
+    },
+    {
+      key: {
+        text: "Agreement"
+      },
+      value: {
+        text: "DSA-0000-0000"
+      }
+    },
+    {
+      key: {
+        text: "Requested by"
+      },
+      value: {
+        text: "example@nhs.net"
+      }
+    },
+    {
+      key: {
+        text: "Additional information"
+      },
+      value: {
+        html: "<p>Example additional information</p>"
+      }
+    }
+  ]
+}) }}
+
+
+{% from "checkboxes/macro.njk" import checkboxes %}
+
+<form>
+
+
+{% from "radios/macro.njk" import radios %}
+
+{{ radios({
+  idPrefix: "decision",
+  name: "decision",
+  fieldset: {
+    legend: {
+      text: "Choose an import checker",
+      size: "l",
+      classes: "nhsuk-label--m",
+      isPageHeading: true
+    }
+  },
+  items: [
+    {
+      value: "approved",
+      text: "David King (you)"
+    },
+    {
+      value: "rejected",
+      text: "Someone else"
+    }
+  ]
+}) }}
+
+
+
+{% from "button/macro.njk" import button %}
+
+<div class="nhsuk-button-group">
+  {{ button({
+    text: "Assign",
+    href: "import-requests"
+  }) }}
+</div>
+</form>
+
+      
+
+    </div>
+  </div>
+{% endblock %}

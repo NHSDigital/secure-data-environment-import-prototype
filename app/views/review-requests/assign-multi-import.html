@@ -18,103 +18,67 @@
   {% from 'back-link/macro.njk' import backLink %}
 
 {{ backLink({
-  href: "import-requests",
+  href: "import-requests#past-week",
   text: "Back"
 }) }}
 {% endblock %}
 
 {% block content %}
   <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
+    <div class="nhsuk-width-container">
 
-      <h1 class="nhsuk-heading-l">Make a decision on import request 90</h1>
+      <h1 class="nhsuk-heading-l">Assign to an import checker (3)</h1>
       
 {% from "summary-list/macro.njk" import summaryList %}
 
-{{ summaryList({
-  rows: [
-    {
-      key: {
-        text: "File name"
-      },
-      value: {
-        html: "<a class=\"nhsuk-link\" href=\"/download/data.txt\">data.txt</a>"
+{{ table({
+    responsive: false,
+    panel: false,
+    caption: "",
+    firstCellIsHeader: false,
+    head: [
+      { text: "ID" },
+      { text: "File name", format: "text" },
+      { text: "Type" },
+      { text: "Request date", format: "text" },
+      { text: "Requested by", format: "text" },
+      { text: "Agreement", format: "text" }
+    ],
+    rows: [
+      [
+        { text: "1001" },
+        { text: 'patient-1001.json' },
+        { text: "Code" },
       
-      }
-    },
-    {
-      key: {
-        text: "Type"
-      },
-      value: {
-        text: "Code"
-      }
-    },
-    {
-      key: {
-        text: "Requested date"
-      },
-      value: {
-        text: "2025-11-09 14:22 pm"
-      }
-    },
-    {
-      key: {
-        text: "Agreement"
-      },
-      value: {
-        text: "DSA-0000-0000"
-      }
-    },
-    {
-      key: {
-        text: "Requested by"
-      },
-      value: {
-        text: "example@nhs.net"
-      }
-    },
-    {
-      key: {
-        text: "Additional information"
-      },
-      value: {
-        html: "<p>Example additional information</p>"
-      }
-    }
-  ]
-}) }}
-
+        { text: "2025-11-09 14:22" },
+        { text: "research.data@oxford.ac.uk" },
+        { text: "DSA-4829-1503" }
+      ],
+      [
+        { text: "1002" },
+        { text: 'export-wardB-1002.zip' },
+        { text: "Code" },
+        
+        { text: "2025-11-09 11:03" },
+        { text: "data.access@imperial.ac.uk" },
+        { text: "DSA-0391-7742" }
+      ],
+      [
+        { text: "1003" },
+        { text: 'clinic-report-1003.csv' },
+        { text: "Reference data" },
+        { text: "2025-11-08 16:45" },
+        { text: "info@ucl-research.ac.uk" },
+        { text: "DSA-6612-3008" }
+      ]
+    ]
+    
+  }) }}
 
 {% from "checkboxes/macro.njk" import checkboxes %}
 
 <form>
-{{ checkboxes({
-  idPrefix: "example",
-  name: "example",
-  fieldset: {
-    legend: {
-      text: "What did you check?",
-      size: "l",
-      classes: "nhsuk-label--m",
-      isPageHeading: false
-    }
-  },
-  hint: {
-    text: "Select all options that apply"
-  },
-  items: [
-    {
-      value: "Contains no personally identifiable information",
-      text: "Contains no personally identifiable information"
-    },
-  
-    {
-      value: "other",
-      text: "Other"
-    }
-  ]
-}) }}
+
 
 {% set otherReasonInput %}
   {% from "textarea/macro.njk" import textarea %}
@@ -132,10 +96,10 @@
 
 {{ radios({
   idPrefix: "decision",
-  name: "decision",
+  name: "Choose an output checker",
   fieldset: {
     legend: {
-      text: "Your decision",
+      text: "Choose an output checker",
       size: "l",
       classes: "nhsuk-label--m",
       isPageHeading: true
@@ -144,11 +108,11 @@
   items: [
     {
       value: "approved",
-      text: "Approved"
+      text: "David King (you)"
     },
     {
       value: "rejected",
-      text: "Rejected"
+      text: "Someone else"
     }
   ]
 }) }}
@@ -200,11 +164,9 @@
 
 <div class="nhsuk-button-group">
   {{ button({
-    text: "Submit decision",
+    text: "Assign",
     href: "import-requests"
   }) }}
-
-  <a href="import-requests" class="nhsuk-link">Cancel</a>
 </div>
 </form>
 

@@ -216,7 +216,9 @@
   <div>
     <h2 class="nhsuk-heading-s">Unassigned pending requests</h2>
     {% from 'button/macro.njk' import button %}
-    {{ button({ text: "Assign selected requests" }) }}
+    {{ button({ 
+      text: "Assign selected requests",
+      href: "assign-multi-import" }) }}
     <p>10 pending requests, ordered by 'priority' then 'request date' (oldest to newest)</p>
   </div>
 
@@ -247,7 +249,19 @@
         { text: "2025-11-08 10:12" },
         { text: "research.team@ox.ac.uk" },
         { text: "DSA-1234-5678" },
-        { text: "a.smith@nhs.net" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
+        { html: '<a class="nhsuk-link no-wrap" href="assign-single-import">Assign</a>' }
+      ],
+      [
+        { html: '<input type="checkbox" name="unassignedRequest" value="2001" class="app-checkbox">' },
+        { text: "2001" },
+        { html: '<a class="nhsuk-link" href="/requests/2001">patient-2001.json</a>' },
+        { text: "Reference data" },
+        
+        { text: "2025-11-08 10:12" },
+        { text: "research.team@ox.ac.uk" },
+        { text: "DSA-1234-5678" },
+        { html: '<span style="color: #626a6e;">Unassigned</span>' },
         { html: '<a class="nhsuk-link no-wrap" href="/requests/2001/assign">Assign</a>' }
       ]
     ]
@@ -403,7 +417,7 @@
       } 
     }, 
     { 
-      label: "Unassigned (1)", 
+      label: "Unassigned (2)", 
       id: "past-week", 
       panel: { 
         html: Unassigned 
@@ -417,7 +431,7 @@
       } 
     },  
     { 
-      label: "All pending (4)", 
+      label: "All pending (5)", 
       id: "past-year", 
       panel: { 
         html: allPending 

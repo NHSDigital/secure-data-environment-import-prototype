@@ -20,8 +20,10 @@
 
 {% from "button/macro.njk" import button %}
 
+<!-- Filters -->
 
-
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-one-half">
 {% from 'details/macro.njk' import details %}
 
 {% call details({
@@ -29,7 +31,7 @@
   classes: "nhsuk-expander"
 }) %}
 <div class="nhsuk-grid-row">
- <div class="nhsuk-grid-column-one-third">
+ <div class="nhsuk-grid-column-two-thirds">
  {% from 'input/macro.njk' import input %}
 
 {{ input({
@@ -42,59 +44,11 @@
   id: "RequestedBy",
   name: "RequestedBy"
 }) }}
-</div>
 
-<div class="nhsuk-grid-column-one-third">
-{{ input({
-  label: {
-    text: "Agreement"
-  },
-  hint: {
-    text: "Enter full or partial DSA number"
-  },
-  id: "Agreement",
-  name: "Agreement"
-}) }}
-</div>
-
-<div class="nhsuk-grid-column-one-third">
-{{ input({
-  label: {
-    text: "Output checker"
-  },
-  hint: {
-    text: "Enter full or partial email address"
-  },
-  id: "OutputChecker",
-  name: "OutputChecker"
-}) }}
- </div>
-</div>
-
-<div class="nhsuk-grid-row">
- <div class="nhsuk-grid-column-one-third">
  {% from 'select/macro.njk' import select %}
 
-{{ select({
-  id: "select-1",
-  name: "select-1",
-  label: {
-    text: "Priority"
-  },
-  items: [
-    {
-      value: 1,
-      text: "Normal"
-    },
-    {
-      value: 2,
-      text: "Fast track"
-    }
-  ]
-}) }}
-</div>
 
-<div class="nhsuk-grid-column-one-third">
+
 {% from 'date-input/macro.njk' import dateInput %}
 
 {{ dateInput({
@@ -122,9 +76,8 @@
     }
   ]
 }) }}
-</div>
 
-<div class="nhsuk-grid-column-one-third">
+
 {% from 'date-input/macro.njk' import dateInput %}
 
 {{ dateInput({
@@ -152,17 +105,27 @@
     }
   ]
 }) }}
-</div>
+
 
 {% from 'button/macro.njk' import button %}
 
 {{ button({
   text: "Apply filters"
 }) }}
+</div>
+
+
+
+
+
+
+
+
 
 {% endcall %}
-
-   
+</div>
+</div>
+   <!-- End of filters -->
 {% from 'tables/macro.njk' import table %}
 
 

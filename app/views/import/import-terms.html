@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block beforeContent %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+{{ backLink({
+  href: "#",
+  text: "Back"
+}) }}
+{% endblock %}
+
+{% block header %}
+  {{ header({
+    service: {
+      text: 'Import reference data or code',
+      href: "/"
+    }
+  }) }}
+{% endblock %}
+
+{% from 'breadcrumb/macro.njk' import breadcrumb %}
+{% from 'button/macro.njk' import button %}
+
+{% set mainClasses = "nhsuk-main-wrapper--s" %}
+
+
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+     <h1 class="nhsuk-heading-l">Import conditions</h1>
+      <p>By importing code or reference data into the Secure Data Environment (SDE) make sure that: </p>
+      <ul>  
+        <li>the file does not contain malware or anything that could harm the SDE </li>
+        <li>the file does not contain personal data </li>
+        <li>you are authorised by your organisation to upload the file, and they are used only for the approved purpose and conditions as set out in the applicable Data Sharing Agreement and SDE Service Agreement </li>
+        <li>any code (including generative AI) is for research only and will not be used for live decision making or direct care </li>
+        <li>the file or code do not introduce a risk of identifying individuals, whether on their own or when combined with other data in the SDE </li>
+        <li>you understand that activity in the SDE is monitored and misuse may result in loss of access </li>
+      </ul>
+
+    <div class="nhsuk-checkboxes" data-module="nhsuk-checkboxes">
+      <div class="nhsuk-checkboxes__item">
+        <input class="nhsuk-checkboxes__input" id="example" name="example" type="checkbox" value="email">
+        <label class="nhsuk-label nhsuk-checkboxes__label" for="example">
+          I have read and understand the import conditions.
+        </label>
+      </div>
+   </div>
+      
+<br>
+
+
+      {{ button({
+        text: "Continue",
+        href: "import-summary"
+      }) }}
+
+      
+
+    </div>
+  </div>
+{% endblock %}

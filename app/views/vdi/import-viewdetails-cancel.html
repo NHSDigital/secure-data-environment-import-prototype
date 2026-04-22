@@ -26,7 +26,7 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
       <h1 class="nhsuk-heading-l">
-        Import request 1001
+        Cancel import request 1001
       </h1>
 {% from "summary-list/macro.njk" import summaryList %}
 
@@ -85,7 +85,10 @@
 
 {% from "button/macro.njk" import button %}
 
-
+{{ button({
+  text: "Cancel request",
+  classes: "nhsuk-button--warning"
+}) }}
 
     </div>
   </div>

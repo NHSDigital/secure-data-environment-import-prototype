@@ -30,7 +30,7 @@
      
 
       {{ summaryList({
-        classes: "nhsuk-summary-list--no-border",
+        classes: "nhsuk-summary-list",
         rows: [
           {
             key: {
@@ -52,12 +52,11 @@
       }) }}
 
       <h2>What happens next</h2>
-      <p>We will check your file to make sure it follows the required format and uses approved characters. </p>
-      <p>If it does not pass this check, we will email you to explain what went wrong and what you need to do next. </p>
-      <p>If it passes, the SDE service team will review your file and decide to approve or reject it.</p>
+      <p>We will check your file for malware and personal information (PID).  </p>
+      
       
       <h2>When will you hear back</h2>
-      <p>We aim to send you a decision within 5 working days.</p>
+      <p>We aim to send you a decision within 1 working day.</p>
       <p>You will get an email explaining the outcome and what to do next.</p>
 
       {% from 'button/macro.njk' import button %}
@@ -68,7 +67,7 @@
 
 <br>
 
-<p>*prototype link* - <a href="import-confirmation-page-code" class="nhsuk-link">Show code confirmation screen</a></p>
+<p>*prototype link* - <a href="import-confirmation-page" class="nhsuk-link">Show reference data confirmation screen</a></p>
 
     </div>
   </div>
